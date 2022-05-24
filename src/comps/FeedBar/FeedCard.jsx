@@ -36,7 +36,7 @@ function FeedCard() {
   };
   return (
     <Card>
-      <CardHeader
+      <CardHeader 
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
@@ -47,10 +47,9 @@ function FeedCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="shanu"
-        // subheader={createdAt}
+        title="Shrimp and Chorizo Paella"
+        subheader="September 14, 2016"
       />
-
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
@@ -66,7 +65,7 @@ function FeedCard() {
           margin: "0 0 1rem 1rem",
         }}
       >
-        <ThumbUpOutlinedIcon/>
+        <ThumbUpOutlinedIcon />
         {/* <ThumbUpIcon /> */}
         <ThumbDownOffAltOutlinedIcon />
         {/* <ThumbDownIcon /> */}
