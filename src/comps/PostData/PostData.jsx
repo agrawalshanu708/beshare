@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -6,8 +6,18 @@ import Button from "@mui/material/Button";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Avatar from "@mui/material/Avatar";
 import { cover1, avatar1 } from "../../Assets/index";
-
+import { useDispatch, useSelector } from "react-redux";
+import { createPostHandler } from "../../redux/slice/post/postServices";
+import { TokenOutlined } from "@mui/icons-material";
 const PostData = () => {
+  const [post, setPost] = useState("");
+  const { foundUser, token } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+
+  const postHandler = () => {
+    dispatch(createPostHandler({ postContent: post, token }));
+  };
+
   return (
     <Box
       sx={{
@@ -62,7 +72,9 @@ const PostData = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h6" component="div"></Typography>
+          <Typography variant="h6" component="div">
+            {foundUser.following}
+          </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Following{" "}
           </Typography>
@@ -74,7 +86,9 @@ const PostData = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h6" component="div"></Typography>
+          <Typography variant="h6" component="div">
+            {foundUser.followers}
+          </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Followers
           </Typography>
@@ -91,7 +105,9 @@ const PostData = () => {
           marginTop: "1rem",
         }}
       >
-        <Typography variant="p" component="div"></Typography>
+        <Typography variant="p" component="div">
+          {foundUser.firstName} {foundUser.lastName}
+        </Typography>
         <Typography variant="p" component="div">
           |
         </Typography>
@@ -120,9 +136,14 @@ const PostData = () => {
           label="Thoughts"
           multiline
           maxRows={4}
+          onChange={(e) => setPost(e.target.value)}
         />
 
-        <Button variant="contained" endIcon={<AddCircleOutlineOutlinedIcon />}>
+        <Button
+          variant="contained"
+          endIcon={<AddCircleOutlineOutlinedIcon />}
+          onClick={postHandler}
+        >
           Post
         </Button>
       </Box>

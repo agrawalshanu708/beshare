@@ -4,7 +4,6 @@ import axios from "axios";
 export const signupHandler = createAsyncThunk(
   "auth/signupHandler",
   async ({ firstName, lastName, username, password }, thunkAPI) => {
-    console.log(firstName, lastName, username, password);
     try {
       const response = await axios.post("/api/auth/signup", {
         firstName,

@@ -28,15 +28,14 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function FeedCard() {
+function FeedCard({ post }) {
   const [expanded, setExpanded] = React.useState(false);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
     <Card>
-      <CardHeader 
+      <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             R
@@ -47,14 +46,12 @@ function FeedCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={post.username}
         subheader="September 14, 2016"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-          fugit aperiam, explicabo sed repudiandae rerum dolor aliquid ipsam nam
-          molestiae, cupiditate voluptatum consequatur!
+          {post.content}
         </Typography>
       </CardContent>
       <Box

@@ -4,8 +4,9 @@ import { loginHandler, signupHandler } from "./authService";
 const initialState = {
   status: "",
   foundUser: {},
+  token: ""
 };
-
+console.log(initialState.foundUser)
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -18,7 +19,7 @@ export const authSlice = createSlice({
       state.status = true;
     },
     [signupHandler.fulfilled]: (state, action) => {
-      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("token", action.payload.encodedToken);
       state.foundUser = action.payload.createdUser;
       alert("signup success");
     },
@@ -30,8 +31,9 @@ export const authSlice = createSlice({
         state.status = true
     },
     [loginHandler.fulfilled]: (state,action) => {
-       localStorage.setItem('token', action.payload.token)
-       state.foundUser = action.payload.createdUser
+       localStorage.setItem('token', action.payload.encodedToken)
+       state.foundUser = action.payload.foundUser
+       state.token = action.payload.encodedToken
         alert("login success")
     },
     [loginHandler.rejected]: (action) => {

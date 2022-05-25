@@ -14,15 +14,16 @@ import Container from '@mui/material/Container';
 import {useState} from "react"
 import { useDispatch } from 'react-redux';
 import { loginHandler } from '../../redux/slice/auth/authService';
+import { useNavigate } from 'react-router-dom';
 
 
 
- function Login() {
+function Login() {
 const[loginCredential, setLoginCredential] = useState({
     username:"",
     password:""
 })
-
+const navigate = useNavigate()
 const dispatch = useDispatch()
 function clickHandler(){
 dispatch(loginHandler({
@@ -31,6 +32,15 @@ password: loginCredential.password
 }))    
 }
 
+function guestHandler(){
+  dispatch(loginHandler({
+    username:"adarshbalika",
+    password:"adarshBalika123"
+  }))
+setTimeout(() =>{
+  navigate("/")
+},1000)
+}
   return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -81,6 +91,8 @@ password: loginCredential.password
             >
               Sign In
             </Button>
+            <Button fullWidth
+              variant="contained" onClick = {guestHandler}>login as Guest</Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
