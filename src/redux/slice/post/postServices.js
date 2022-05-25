@@ -15,9 +15,8 @@ export const getAllPost = createAsyncThunk(
 );
 
 export const createPostHandler = createAsyncThunk(
-  "/post/postHandler",
+  "/post/createPostHandler",
   async ({postContent,token}, { rejectWithValue }) => {
-      console.log(postContent,token)
     try {
       const response = await axios.post("/api/posts", {postData: postContent} ,{headers: {authorization: token}});
       console.log(response);
@@ -27,4 +26,19 @@ export const createPostHandler = createAsyncThunk(
     }
   }
 );
+
+export const likePost = createAsyncThunk("post/likePost", 
+async ({postId,token},{rejectWithValue}) => {
+  
+  console.log("wirint")
+  console.log(postId,token)
+  try {
+    const response = await axios.post( `api/posts/like/${postId}`,{},{headers:{authorization:token}})
+    console.log(response)
+    return response.data.posts
+  } catch (error) {
+    return rejectWithValue(`Error from likePost: ${error.message}`);
+
+  }
+})
 

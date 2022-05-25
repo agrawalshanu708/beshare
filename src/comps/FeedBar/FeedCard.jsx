@@ -16,6 +16,8 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { likePost } from "../../redux/slice/post/postServices";
+import { useDispatch, useSelector } from "react-redux";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,9 +32,16 @@ const ExpandMore = styled((props) => {
 
 function FeedCard({ post }) {
   const [expanded, setExpanded] = React.useState(false);
+  const dispatch = useDispatch();
+  const { token } = useSelector((store) => store.auth);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const likeHandler = () => {
+    dispatch(likePost({ token,postId: post._id }));
+  };
+console.log()
   return (
     <Card>
       <CardHeader
@@ -62,9 +71,9 @@ function FeedCard({ post }) {
           margin: "0 0 1rem 1rem",
         }}
       >
-        <ThumbUpOutlinedIcon />
+        <ThumbUpOutlinedIcon onClick={likeHandler}/>{post.likes.likeCount}
         {/* <ThumbUpIcon /> */}
-        <ThumbDownOffAltOutlinedIcon />
+        {/* <ThumbDownOffAltOutlinedIcon /> */}
         {/* <ThumbDownIcon /> */}
         <BookmarkAddOutlinedIcon />
         <CommentOutlinedIcon
