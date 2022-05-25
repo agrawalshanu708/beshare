@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createPostHandler, getAllPost,likePost} from "./postServices"
+import {createPostHandler, getAllPost,likePost,dislikePost} from "./postServices"
 
 
 const initialState = {
@@ -41,6 +41,16 @@ const postSlice = createSlice({
             state.status = false
         },
         [likePost.rejected]:(state) => {
+            state.status = false
+        },
+        [dislikePost.pending]:(state) => {
+            state.status = true
+        },
+        [dislikePost.fulfilled]:(state,action) => {
+            state.status = false
+            state.allPost = action.payload
+        },
+        [dislikePost.rejected]:(state) => {
             state.status = false
         }
 
