@@ -38,14 +38,10 @@ async ({postId,token},{rejectWithValue}) => {
 
 export const dislikePost = createAsyncThunk("post/dislikePost", 
 async ({postId,token},{rejectWithValue}) => {
-  console.log("wiring2")
-console.log(postId,token)
   try {
     const response = await axios.post(`api/posts/dislike/${postId}`,{},{headers: {authorization:token}})
-    console.log(response)
     return response.data.posts
   } catch (error) {
-    console.log(error)
     return rejectWithValue(`Error from dislikePost: ${error.message}`);
 
   }

@@ -17,7 +17,7 @@ const PostData = () => {
   const postHandler = () => {
     dispatch(createPostHandler({ postContent: post, token }));
   };
-
+  // console.log(foundUser)
   return (
     <Box
       sx={{

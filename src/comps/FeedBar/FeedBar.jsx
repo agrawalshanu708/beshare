@@ -10,7 +10,7 @@ function FeedBar() {
     dispatch(getAllPost());
   }, []);
   const { allPost } = useSelector((store) => store.posts);
-  console.log(allPost);
+  // console.log(allPost);
   return (
     <>
       <Box
