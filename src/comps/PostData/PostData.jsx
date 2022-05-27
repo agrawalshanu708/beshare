@@ -9,10 +9,13 @@ import { cover1, avatar1 } from "../../Assets/index";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostHandler } from "../../redux/slice/post/postServices";
 import { TokenOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
 const PostData = () => {
   const [post, setPost] = useState("");
   const { foundUser, token } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const postHandler = () => {
     dispatch(createPostHandler({ postContent: post, token }));
@@ -55,6 +58,8 @@ const PostData = () => {
           }}
           alt="Travis Howard"
           src={avatar1}
+          onClick = {() => navigate("/profile")}
+
         />
       </Box>
 

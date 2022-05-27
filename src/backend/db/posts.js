@@ -15,7 +15,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "shanuagrawal",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
@@ -62,7 +62,7 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "adarshbalika",
+        username: "shanuagrawal",
         text: "Wow! Lets make it happen.",
         votes: {
           upvotedBy: [],
@@ -84,7 +84,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "adarshbalika",
+        username: "shanuagrawal",
         text: "Interesting",
         votes: {
           upvotedBy: [],
