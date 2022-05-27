@@ -60,7 +60,7 @@ function EditProfileModal() {
           <Button
             sx={{ display: "block", marginTop: "1rem" }}
             open={open}
-            onClick = {() => setOpen(false)}
+            onClick={() => setOpen(false)}
           >
             Save
           </Button>

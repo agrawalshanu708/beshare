@@ -8,12 +8,13 @@ import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined
 import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
 import { avatar1 } from "../../../Assets/index";
 import { useSelector } from "react-redux";
-import {EditProfileModal} from "./EditProfileModal"
+import { EditProfileModal } from "./EditProfileModal";
 const UserDetails = () => {
-//   const { user, token } = useSelector((store) => store.auth);
-//   const { allPost } = useSelector((store) => store.posts);
-//   const personalPost = allPost.filter((el) => el.userId === user._id);
-
+  const { allPost } = useSelector((store) => store.posts);
+  const { foundUser, token } = useSelector((store) => store.auth);
+  const personalPost = allPost.filter(
+    (el) => el.username === foundUser.username
+  );
   return (
     <Box
       sx={{
@@ -45,13 +46,12 @@ const UserDetails = () => {
         />
 
         <Box>
-          <Box  sx = {{display:"flex", justifyContent:"space-between"}}>
-          <Typography variant="h6" component="div">
-            {/* {user.firstName} {user.lastName}{" "} */}
-            shanu agrawal
-          </Typography>
-            <EditProfileModal/>
-            </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography variant="h6" component="div">
+              {foundUser.firstName} {foundUser.lastName}{" "}
+            </Typography>
+            <EditProfileModal />
+          </Box>
           <Typography variant="h6" component="div" sx={{ color: "gray" }}>
             Web Developer
           </Typography>
@@ -74,8 +74,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {" "}22
-            {/* {user.following.length}{" "} */}
+            {foundUser.following.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Following{" "}
@@ -90,7 +89,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {/* {personalPost.length} */}33
+            {personalPost.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Post
@@ -105,7 +104,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {/* {user.followers.length} */}33
+            {foundUser.followers.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Followers
@@ -166,4 +165,4 @@ const UserDetails = () => {
     </Box>
   );
 };
-export {UserDetails}
+export { UserDetails };
