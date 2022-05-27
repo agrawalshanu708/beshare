@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import { UserCard } from "./UserCard";
+import { getAllUser } from "../../redux/slice/user/userService";
+import { useDispatch, useSelector } from "react-redux";
 
 const FollowUser = () => {
-
+const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUser())
+  },[])
+const {allUser} = useSelector((store) => store.users)
   return (
     <Box
       sx={{
@@ -28,8 +34,9 @@ const FollowUser = () => {
         <Typography>See All</Typography>
       </Box>
 
-      <UserCard/>
-      <UserCard/>
+      {
+        allUser.map(el => <UserCard user = {el}/>)
+      }
 
 
     </Box>

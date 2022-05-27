@@ -6,6 +6,6 @@ export const store = configureStore({
   reducer: {
     auth: authenticationReducer,
     posts : postReducer,
-    user: userReducer,
+    users: userReducer,
   },
 });

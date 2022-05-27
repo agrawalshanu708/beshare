@@ -21,14 +21,18 @@ export const signupHandler = createAsyncThunk(
 export const loginHandler = createAsyncThunk(
   "auth/loginHandler",
   async ({ username, password }, thunkAPI) => {
+    console.log(username, password);
     try {
       const response = await axios.post("/api/auth/login", {
         username,
         password,
       });
+      console.log(response)
       return response.data;
     } catch (error) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error);
+
     }
   }
 );
