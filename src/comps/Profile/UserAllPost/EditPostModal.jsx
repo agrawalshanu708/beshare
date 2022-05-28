@@ -6,7 +6,12 @@ import Button from "@mui/material/Button";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
-import { editPost, getAllPost, getUserPost } from "../../../redux/slice/post/postServices";
+import {
+  deletePost,
+  editPost,
+  getAllPost,
+  getUserPost,
+} from "../../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
 
 const style = {
@@ -27,18 +32,17 @@ function ChildModal({ post }) {
   const [open, setOpen] = useState(false);
   const [newPost, setNewPost] = useState(post.content);
   const dispatch = useDispatch();
-  const {foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.auth);
   const finalPost = { ...post, content: newPost };
   const handleOpen = () => {
     setOpen(true);
   };
-  const username = foundUser.username
+  const username = foundUser.username;
   const editPostHandler = async () => {
     setOpen(false);
     await dispatch(editPost({ finalPost: finalPost, postId: post._id, token }));
-    await dispatch(getUserPost({username: username}))
+    await dispatch(getUserPost({ username: username }));
     await dispatch(getAllPost());
-
   };
 
   return (
@@ -68,10 +72,17 @@ function ChildModal({ post }) {
 
 function EditPostModal({ post }) {
   const [open, setOpen] = React.useState(false);
+  const { token } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteHandler = () => {
+    dispatch(deletePost({ token, postId: post._id }));
     setOpen(false);
   };
 
@@ -88,7 +99,7 @@ function EditPostModal({ post }) {
           <Typography variant="body2" color="text.secondary">
             <ChildModal post={post} />
           </Typography>
-          <Button onClick={() => setOpen(false)}>Delete</Button>
+          <Button onClick={deleteHandler}>Delete</Button>
         </Box>
       </Modal>
     </div>
