@@ -15,12 +15,7 @@ const UserDetails = () => {
   const[personalPost,setPersonalPost] = useState([])
   const { allPost } = useSelector((store) => store.posts);
   const { foundUser, token } = useSelector((store) => store.auth);
-//  useEffect(() => {
-//   const personalPost = allPost.filter(
-//     (el) => el.username === foundUser.username
-//   );
-//   setPersonalPost(personalPost)
-//  },[allPost]) 
+
   return (
     <Box
       sx={{

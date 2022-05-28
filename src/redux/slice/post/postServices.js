@@ -46,6 +46,17 @@ async ({postId,token},{rejectWithValue}) => {
 
   }
 })
+export const getUserPost = createAsyncThunk("post/getUserPost", 
+async ({username},{rejectWithValue}) => {
+  console.log(username)
+  try {
+  const response = await axios.get(`/api/posts/user/${username}`)  
+  console.log(response)
+  return response.data.posts
+} catch (error) {
+  return rejectWithValue(`Error from getUserPost: ${error.message}`);
+}
+})
 
 export const editPost = createAsyncThunk("post/editPost", 
 async({finalPost,postId,token},{ rejectWithValue}) => {
