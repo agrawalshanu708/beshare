@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+
 export const getAllPost = createAsyncThunk(
   "/post/getAllPost",
   async (_, thunkAPI) => {
