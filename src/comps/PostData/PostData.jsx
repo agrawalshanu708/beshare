@@ -7,7 +7,7 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Avatar from "@mui/material/Avatar";
 import { cover1, avatar1 } from "../../Assets/index";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostHandler } from "../../redux/slice/post/postServices";
+import { createPostHandler, getAllPost } from "../../redux/slice/post/postServices";
 import { TokenOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -17,8 +17,9 @@ const PostData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const postHandler = () => {
-    dispatch(createPostHandler({ postContent: post, token }));
+  const postHandler = async () => {
+    await dispatch(createPostHandler({ postContent: post, token }));
+    await dispatch(getAllPost())
   };
   // console.log(foundUser)
   return (

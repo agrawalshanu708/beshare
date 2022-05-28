@@ -1,9 +1,18 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Typography from "@mui/material/Typography";
+import { TextField } from "@mui/material";
+import {
+  deletePost,
+  editPost,
+  getAllPost,
+  getUserPost,
+} from "../../../redux/slice/post/postServices";
+import { useDispatch, useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -19,13 +28,21 @@ const style = {
   pb: 3,
 };
 
-function ChildModal() {
-  const [open, setOpen] = React.useState(false);
+function ChildModal({ post }) {
+  const [open, setOpen] = useState(false);
+  const [newPost, setNewPost] = useState(post.content);
+  const dispatch = useDispatch();
+  const { foundUser, token } = useSelector((store) => store.auth);
+  const finalPost = { ...post, content: newPost };
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
+  const username = foundUser.username;
+  const editPostHandler = async () => {
     setOpen(false);
+    await dispatch(editPost({ finalPost: finalPost, postId: post._id, token }));
+    await dispatch(getUserPost({ username: username }));
+    await dispatch(getAllPost());
   };
 
   return (
@@ -34,31 +51,38 @@ function ChildModal() {
       <Modal
         hideBackdrop
         open={open}
-        onClose={handleClose}
+        onClose={editPostHandler}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: 200 }}>
-          <p id="child-modal-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-            dolorem voluptatem alias doloremque totam quod fugiat laborum
-            incidunt natus ullam dolor nemo deleniti eligendi hic, minus tempore
-            a est vel corrupti accusamus beatae necessitatibus labore quaerat.
-            Rem ut odit ducimus?
-          </p>
-          <Button onClick={handleClose}>Save</Button>
+          <TextField
+            value={newPost}
+            id="child-modal-description"
+            onChange={(e) => setNewPost(e.target.value)}
+          >
+            {post.content}
+          </TextField>
+          <Button onClick={editPostHandler}>Save</Button>
         </Box>
       </Modal>
     </React.Fragment>
   );
 }
 
-function EditPostModal() {
+function EditPostModal({ post }) {
   const [open, setOpen] = React.useState(false);
+  const { token } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteHandler = () => {
+    dispatch(deletePost({ token, postId: post._id }));
     setOpen(false);
   };
 
@@ -73,9 +97,9 @@ function EditPostModal() {
       >
         <Box sx={{ ...style, width: 400 }}>
           <Typography variant="body2" color="text.secondary">
-            <ChildModal />
+            <ChildModal post={post} />
           </Typography>
-          <Button onClick={() => setOpen(false)}>Delete</Button>
+          <Button onClick={deleteHandler}>Delete</Button>
         </Box>
       </Modal>
     </div>

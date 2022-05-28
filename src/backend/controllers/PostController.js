@@ -135,6 +135,7 @@ export const editPostHandler = function (schema, request) {
         }
       );
     }
+
     post = { ...post, ...postData };
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
@@ -269,7 +270,7 @@ export const deletePostHandler = function (schema, request) {
       );
     }
     const postId = request.params.postId;
-    let post = schema.posts.findBy({ _id: postId }).attrs;
+    const post = schema.posts.findBy({ _id: postId }).attrs;
     if (post.username !== user.username) {
       return new Response(
         400,

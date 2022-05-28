@@ -9,6 +9,7 @@ function FeedBar() {
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
+  
   const { allPost } = useSelector((store) => store.posts);
   // console.log(allPost);
   return (

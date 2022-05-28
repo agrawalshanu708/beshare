@@ -3,13 +3,19 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { ProfileCard } from "./ProfileCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPost, getUserPost } from "../../../redux/slice/post/postServices";
+import {useEffect,useState} from "react" 
 const UserAllPost = () => {
-  const { allPost } = useSelector((store) => store.posts);
+  const dispatch = useDispatch()
+  const {userPost, allPost } = useSelector((store) => store.posts);
   const { foundUser, token } = useSelector((store) => store.auth);
-  const personalPost = allPost.filter(
-    (el) => el.username === foundUser.username
-  );
+  const username = foundUser.username
+  console.log(userPost)
+  console.log(allPost)
+  useEffect(() => {
+   dispatch(getUserPost({username: username}))
+  },[])
   return (
     <Box sx={{ marginTop: "2rem" }}>
       <Box sx={{ cursor: "pointer" }}>
@@ -37,7 +43,7 @@ const UserAllPost = () => {
           margin: "0 1rem",
         }}
       >
-        {personalPost.map((el) => (
+        {userPost.map((el) => (
           <ProfileCard post={el} />
         ))}
       </Box>

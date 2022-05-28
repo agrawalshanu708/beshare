@@ -46,7 +46,7 @@ function ProfileCard({ post }) {
           <CommentOutlinedIcon />
           <BookmarkAddOutlinedIcon />
         </Box>
-        <EditPostModal />
+        <EditPostModal post = {post}/>
       </Box>
     </Card>
   );

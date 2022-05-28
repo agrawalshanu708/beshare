@@ -36,10 +36,9 @@ function Login() {
         username: "shanuagrawal",
         password: "shanu123",
       })
+    ).then(() =>
+        navigate("/")
     );
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
   }
   return (
     <Container component="main" maxWidth="xs">

@@ -9,12 +9,13 @@ import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
 import { avatar1 } from "../../../Assets/index";
 import { useSelector } from "react-redux";
 import { EditProfileModal } from "./EditProfileModal";
+import {useEffect,useState} from "react"
+
 const UserDetails = () => {
+  const[personalPost,setPersonalPost] = useState([])
   const { allPost } = useSelector((store) => store.posts);
   const { foundUser, token } = useSelector((store) => store.auth);
-  const personalPost = allPost.filter(
-    (el) => el.username === foundUser.username
-  );
+
   return (
     <Box
       sx={{
@@ -89,7 +90,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {personalPost.length}
+         22
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Post
