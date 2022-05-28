@@ -9,13 +9,20 @@ import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
 import { avatar1 } from "../../../Assets/index";
 import { useSelector } from "react-redux";
 import { EditProfileModal } from "./EditProfileModal";
-import {useEffect,useState} from "react"
+import { useEffect, useState } from "react";
 
 const UserDetails = () => {
-  const[personalPost,setPersonalPost] = useState([])
-  const { allPost } = useSelector((store) => store.posts);
+  const [personalPost, setPersonalPost] = useState([]);
+  const [userProfileDetails, setUserProfileDetails] = useState({
+    profession: "software developer",
+    contactNumber: "9424431504",
+    website: "shanuagrawal.com",
+    bio: "I am a software developer who is well versed with JavaScript/ES6+ , ReactJS & Redux and an intermediate in UI/UX concepts. I can build web apps and can write modular code for better results. I am always eager to learn new technologies and methodologies",
+  });
+  const { allPost,userPost } = useSelector((store) => store.posts);
   const { foundUser, token } = useSelector((store) => store.users);
 
+  console.log(foundUser);
   return (
     <Box
       sx={{
@@ -51,10 +58,10 @@ const UserDetails = () => {
             <Typography variant="h6" component="div">
               {foundUser.firstName} {foundUser.lastName}{" "}
             </Typography>
-            <EditProfileModal />
+            <EditProfileModal userProfileDetails={userProfileDetails} setUserProfileDetails={setUserProfileDetails} foundUser={foundUser}  />
           </Box>
           <Typography variant="h6" component="div" sx={{ color: "gray" }}>
-            Web Developer
+            {userProfileDetails.profession}
           </Typography>
         </Box>
       </Box>
@@ -90,7 +97,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-         22
+            {userPost.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Post
@@ -115,16 +122,14 @@ const UserDetails = () => {
       <Divider sx={{ margin: "1rem" }} />
       <Box>
         <Typography sx={{ margin: "0.5rem 1rem" }} variant="h6" component="div">
-          About Me{" "}
+          About Me
         </Typography>
         <Typography
           sx={{ color: "gray", textAlign: "center", margin: "0 1rem" }}
           variant="p"
           component="div"
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-          doloribus obcaecati alias labore cum quasi. Quam nostrum minima esse
-          soluta.{" "}
+          {userProfileDetails.bio}
         </Typography>
       </Box>
       <Divider sx={{ margin: "1rem" }} />
@@ -139,7 +144,7 @@ const UserDetails = () => {
             variant="p"
             component="span"
           >
-            www.shanuagrawal.com
+           {userProfileDetails.website}
           </Typography>
         </Box>
         <Box>
@@ -149,7 +154,7 @@ const UserDetails = () => {
             variant="p"
             component="span"
           >
-            agrawalshanu798@gmail.com
+            {foundUser.username}
           </Typography>
         </Box>
         <Box>
@@ -159,7 +164,7 @@ const UserDetails = () => {
             variant="p"
             component="span"
           >
-            +91 9424431504
+            {userProfileDetails.contactNumber}
           </Typography>
         </Box>
       </Box>

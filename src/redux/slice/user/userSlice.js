@@ -34,7 +34,6 @@ const userSlice = createSlice({
       state.foundUser = action.payload.createdUser;
     },
     [signupHandler.rejected]: (action) => {
-      console.log(action.payload);
       alert("signup rejected");
     },
     [loginHandler.pending]: (state) => {
@@ -46,7 +45,6 @@ const userSlice = createSlice({
       state.token = action.payload.encodedToken;
     },
     [loginHandler.rejected]: (action) => {
-      console.error(action.payload);
       alert("login failure");
     },
     [bookmarkPost.pending]: (state) => {
@@ -84,9 +82,7 @@ const userSlice = createSlice({
     },
     [followUser.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       state.foundUser = action.payload.user;
-      console.log(`consoling after update ${current(state)}`);
     },
     [followUser.rejected]: (state, action) => {
       state.loading = false;
