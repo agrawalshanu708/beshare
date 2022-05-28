@@ -15,9 +15,13 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display: "grid",
+  gridTemplateColumns : "200px 200px",
+  gap: "1rem"
+
 };
 
-function EditProfileModal() {
+function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,31 +40,68 @@ function EditProfileModal() {
             id="standard-basic"
             label="First Name "
             variant="standard"
+            value= {foundUser.firstName}
           />
-          <TextField id="standard-basic" label="Last Name" variant="standard" />
+          <TextField id="standard-basic" label="Last Name" variant="standard"
+          value = {foundUser.lastName}
+          />
           <TextField
             id="standard-basic"
             label="Profession"
             variant="standard"
+            value = {userProfileDetails.profession}
+            onChange={(e) =>
+              setUserProfileDetails((prev) => ({
+                ...prev,
+                profession: e.target.value,
+              }))
+            }
           />
-          <TextField id="standard-basic" label="Email Id" variant="standard" />
           <TextField
             id="standard-basic"
-            label="ContacT Number"
+            label="Contact Number"
             variant="standard"
+            value = {userProfileDetails.contactNumber}
+            onChange={(e) =>
+              setUserProfileDetails((prev) => ({
+                ...prev,
+                contactNumber: e.target.value,
+              }))
+            }
           />
-          <TextField id="standard-basic" label="Website" variant="standard" />
+          <TextField
+            id="standard-basic"
+            label="Website"
+            variant="standard"
+            value = {userProfileDetails.website}
+            onChange={(e) =>
+              setUserProfileDetails((prev) => ({
+                ...prev,
+                website: e.target.value,
+              }))
+            }
+          />
           <TextField
             id="standard-multiline-static"
             label="About Me"
             multiline
             rows={4}
             variant="standard"
+            value={userProfileDetails.bio}
+            onChange={(e) =>
+              setUserProfileDetails((prev) => ({
+                ...prev,
+                bio: e.target.value,
+              }))
+            }
           />
           <Button
             sx={{ display: "block", marginTop: "1rem" }}
             open={open}
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              console.log(userProfileDetails);
+              setOpen(false);
+            }}
           >
             Save
           </Button>

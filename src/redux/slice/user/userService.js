@@ -90,14 +90,12 @@ export const getUser = createAsyncThunk(
 export const followUser = createAsyncThunk(
   "post/followUser",
   async ({ followUserId, token }, { rejectWithValue }) => {
-    console.log("wiring");
     try {
       const response = await axios.post(
         `/api/users/follow/${followUserId}`,
         {},
         { headers: { authorization: token } }
       );
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(`Error from followuser: ${error.message}`);

@@ -11,7 +11,6 @@ const FollowUser = () => {
 
 const dispatch = useDispatch();
   useEffect(() => {
-    console.log("running")
     dispatch(getAllUser())
   },[])
 
