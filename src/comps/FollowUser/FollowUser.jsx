@@ -7,11 +7,15 @@ import { getAllUser } from "../../redux/slice/user/userService";
 import { useDispatch, useSelector } from "react-redux";
 
 const FollowUser = () => {
+  const state = useSelector((store) => store.users)
+
 const dispatch = useDispatch();
   useEffect(() => {
+    console.log("running")
     dispatch(getAllUser())
   },[])
-const {allUser} = useSelector((store) => store.users)
+
+
   return (
     <Box
       sx={{
@@ -35,7 +39,7 @@ const {allUser} = useSelector((store) => store.users)
       </Box>
 
       {
-        allUser.map(el => <UserCard user = {el} key = {el._id}/>)
+        state.allUser.map(el => <UserCard user = {el} key = {el._id}/>)
       }
 
 

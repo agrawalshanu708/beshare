@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { bookmarkPost, getAllUser, loginHandler, removeBookmarkPost, signupHandler } from "./userService";
+import {
+  bookmarkPost,
+  followUser,
+  getAllUser,
+  loginHandler,
+  removeBookmarkPost,
+  signupHandler,
+  unfollowUser,
+} from "./userService";
+import { current } from "immer";
 
 const initialState = {
   allUser: [],
@@ -18,7 +27,7 @@ const userSlice = createSlice({
   },
   extraReducers: {
     [signupHandler.pending]: (state) => {
-      state.status = true;
+      state.loading = true;
     },
     [signupHandler.fulfilled]: (state, action) => {
       localStorage.setItem("token", action.payload.encodedToken);
@@ -29,7 +38,7 @@ const userSlice = createSlice({
       alert("signup rejected");
     },
     [loginHandler.pending]: (state) => {
-      state.status = true;
+      state.loading = true;
     },
     [loginHandler.fulfilled]: (state, action) => {
       localStorage.setItem("token", action.payload.encodedToken);
@@ -41,24 +50,24 @@ const userSlice = createSlice({
       alert("login failure");
     },
     [bookmarkPost.pending]: (state) => {
-      state.status = true;
+      state.loading = true;
     },
     [bookmarkPost.fulfilled]: (state, action) => {
-      state.status = false;
+      state.loading = false;
       state.foundUser.bookmarks = action.payload;
     },
     [bookmarkPost.rejected]: (state) => {
-      state.status = false;
+      state.loading = false;
     },
     [removeBookmarkPost.pending]: (state) => {
-      state.status = "true";
+      state.loading = "true";
     },
     [removeBookmarkPost.fulfilled]: (state, action) => {
-      state.status = false;
+      state.loading = false;
       state.foundUser.bookmarks = action.payload;
     },
     [removeBookmarkPost.rejected]: (state) => {
-      state.status = false;
+      state.loading = false;
     },
     [getAllUser.pending]: (state) => {
       state.loading = true;
@@ -68,7 +77,29 @@ const userSlice = createSlice({
       state.allUser = action.payload;
     },
     [getAllUser.rejected]: (state) => {
-      state.status = false;
+      state.loading = false;
+    },
+    [followUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [followUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      state.foundUser = action.payload.user;
+      console.log(`consoling after update ${current(state)}`);
+    },
+    [followUser.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    [unfollowUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [unfollowUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.foundUser = action.payload.user;
+    },
+    [unfollowUser.rejected]: (state) => {
+      state.loading = false;
     },
   },
 });
