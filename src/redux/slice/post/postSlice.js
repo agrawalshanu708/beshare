@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createPostHandler, getAllPost,likePost,dislikePost} from "./postServices"
+import {createPostHandler, getAllPost,likePost,dislikePost, editPost} from "./postServices"
 
 
 const initialState = {
@@ -10,14 +10,15 @@ const initialState = {
 const postSlice = createSlice({
     name: "post",
     initialState,
-    reducers:{},
+    reducers:{
+    },
     extraReducers: {
         [createPostHandler.pending]:(state) =>{
           state.staus = true;
       
         },
         [createPostHandler.fulfilled]:(state,action) =>{
-            state.status = false;
+            state.status = false
             state.allPost = action.payload
         },
         [createPostHandler.rejected]:(state) =>{
@@ -28,6 +29,7 @@ const postSlice = createSlice({
         },
         [getAllPost.fulfilled]:(state,action) =>{
             state.allPost = action.payload
+            console.log(action.payload)
             state.status = false
         },
         [getAllPost.rejected]:(state) =>{
@@ -52,8 +54,18 @@ const postSlice = createSlice({
         },
         [dislikePost.rejected]:(state) => {
             state.status = false
-        }
-
+        },
+        // [editPost.pending]:(state) => {
+        //     state.status = true
+        // },
+        // [editPost.fulfilled]:(state,action) => {
+        //     state.status = false;
+        //     state.allPost = action.payload;
+        //     // console.log(action.payload)
+        // },
+        // [editPost.rejected]:(state) => {
+        //     state.status = false
+        // }
     }
 })
 

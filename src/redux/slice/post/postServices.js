@@ -46,3 +46,16 @@ async ({postId,token},{rejectWithValue}) => {
 
   }
 })
+
+export const editPost = createAsyncThunk("post/editPost", 
+async({finalPost,postId,token},{ rejectWithValue}) => {
+  console.log(finalPost,postId,token)
+  console.log("wiring")
+  try {
+    const response  = await axios.post(`/api/posts/edit/${postId}`,{postData: finalPost},{headers:{authorization: token}})
+    console.log(response)
+    return response.data
+  } catch (error) {
+    return rejectWithValue(`Error from dislikePost: ${error.message}`);
+  }
+})

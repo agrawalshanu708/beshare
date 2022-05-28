@@ -27,7 +27,6 @@ export const authSlice = createSlice({
     [signupHandler.fulfilled]: (state, action) => {
       localStorage.setItem("token", action.payload.encodedToken);
       state.foundUser = action.payload.createdUser;
-      alert("signup success");
     },
     [signupHandler.rejected]: (action) => {
       console.log(action.payload);
@@ -40,7 +39,6 @@ export const authSlice = createSlice({
       localStorage.setItem("token", action.payload.encodedToken);
       state.foundUser = action.payload.foundUser;
       state.token = action.payload.encodedToken;
-      alert("login success");
     },
     [loginHandler.rejected]: (action) => {
       console.error(action.payload);

@@ -109,7 +109,7 @@ export const createPostHandler = function (schema, request) {
  * send POST Request at /api/posts/edit/:postId
  * body contains { postData }
  * */
-export const editPostHandler = function (schema, request) {
+ export const editPostHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -118,7 +118,7 @@ export const editPostHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
@@ -135,6 +135,7 @@ export const editPostHandler = function (schema, request) {
         }
       );
     }
+
     post = { ...post, ...postData };
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
