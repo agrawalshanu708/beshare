@@ -14,7 +14,7 @@ import {useEffect,useState} from "react"
 const UserDetails = () => {
   const[personalPost,setPersonalPost] = useState([])
   const { allPost } = useSelector((store) => store.posts);
-  const { foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.users);
 
   return (
     <Box

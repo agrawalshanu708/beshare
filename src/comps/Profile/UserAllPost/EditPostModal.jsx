@@ -32,7 +32,7 @@ function ChildModal({ post }) {
   const [open, setOpen] = useState(false);
   const [newPost, setNewPost] = useState(post.content);
   const dispatch = useDispatch();
-  const { foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.users);
   const finalPost = { ...post, content: newPost };
   const handleOpen = () => {
     setOpen(true);
@@ -72,7 +72,7 @@ function ChildModal({ post }) {
 
 function EditPostModal({ post }) {
   const [open, setOpen] = React.useState(false);
-  const { token } = useSelector((store) => store.auth);
+  const { token } = useSelector((store) => store.users);
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);

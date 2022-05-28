@@ -35,7 +35,7 @@ const {allUser} = useSelector((store) => store.users)
       </Box>
 
       {
-        allUser.map(el => <UserCard user = {el}/>)
+        allUser.map(el => <UserCard user = {el} key = {el._id}/>)
       }
 
 

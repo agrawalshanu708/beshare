@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {useState} from "react"
 import { useDispatch } from "react-redux";
-import { signupHandler } from "../../redux/slice/auth/authService";
+import { signupHandler } from "../../redux/slice/user/userService";
 import {useNavigate} from "react-router-dom"
 function Signup() {
   const [signupCredential, setSignupCredential] = useState({

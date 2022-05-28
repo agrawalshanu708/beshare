@@ -24,7 +24,6 @@ const postSlice = createSlice({
     },
     [getAllPost.fulfilled]: (state, action) => {
       state.allPost = action.payload;
-      console.log(action.payload);
       state.status = false;
     },
     [getAllPost.rejected]: (state) => {

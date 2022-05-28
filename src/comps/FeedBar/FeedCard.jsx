@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   bookmarkPost,
   removeBookmarkPost,
-} from "../../redux/slice/auth/authService";
+} from "../../redux/slice/user/userService";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,7 +37,7 @@ const ExpandMore = styled((props) => {
 function FeedCard({ post }) {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch();
-  const { foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.users);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

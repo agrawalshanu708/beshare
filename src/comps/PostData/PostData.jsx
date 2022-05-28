@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const PostData = () => {
   const [post, setPost] = useState("");
-  const { foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

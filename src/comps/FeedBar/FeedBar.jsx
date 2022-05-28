@@ -9,7 +9,7 @@ function FeedBar() {
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
-  
+
   const { allPost } = useSelector((store) => store.posts);
   // console.log(allPost);
   return (
@@ -22,11 +22,9 @@ function FeedBar() {
           marginTop: "3.5rem",
         }}
       >
-        {
-      allPost.map(el => <FeedCard post = {el}/>)
-          
-        }
-        
+        {allPost.map((el) => (
+          <FeedCard post={el} key={el._id} />
+        ))}
       </Box>
     </>
   );

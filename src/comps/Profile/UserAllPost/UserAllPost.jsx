@@ -9,10 +9,9 @@ import {useEffect,useState} from "react"
 const UserAllPost = () => {
   const dispatch = useDispatch()
   const {userPost, allPost } = useSelector((store) => store.posts);
-  const { foundUser, token } = useSelector((store) => store.auth);
+  const { foundUser, token } = useSelector((store) => store.users);
   const username = foundUser.username
-  console.log(userPost)
-  console.log(allPost)
+  
   useEffect(() => {
    dispatch(getUserPost({username: username}))
   },[])
@@ -44,7 +43,7 @@ const UserAllPost = () => {
         }}
       >
         {userPost.map((el) => (
-          <ProfileCard post={el} />
+          <ProfileCard post={el} key = {el._id} />
         ))}
       </Box>
     </Box>
