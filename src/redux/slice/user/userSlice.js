@@ -6,6 +6,7 @@ import {
   loginHandler,
   removeBookmarkPost,
   signupHandler,
+  unfollowUser,
 } from "./userService";
 import { current } from "immer";
 
@@ -88,6 +89,16 @@ const userSlice = createSlice({
       console.log(`consoling after update ${current(state)}`);
     },
     [followUser.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    [unfollowUser.pending]: (state) => {
+      state.loading = true;
+    },
+    [unfollowUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.foundUser = action.payload.user;
+    },
+    [unfollowUser.rejected]: (state) => {
       state.loading = false;
     },
   },

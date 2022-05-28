@@ -2,7 +2,7 @@ import { Box, Avatar, Button, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { avatar1 } from "../../Assets/index";
-import { followUser } from "../../redux/slice/user/userService";
+import { followUser, unfollowUser } from "../../redux/slice/user/userService";
 
 const UserCard = ({user}) => {
 const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const followHandler = () => {
 const findUser = foundUser.following.some(el => el._id === user._id)
 
 const unfollowHandler = () => {
-  console.log("unfollow")
+ dispatch(unfollowUser({followUserId: user._id,token}))
 }
   return (
     <>
