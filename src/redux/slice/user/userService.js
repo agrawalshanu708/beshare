@@ -67,7 +67,6 @@ export const removeBookmarkPost = createAsyncThunk(
   }
 );
 
-
 export const getAllUser = createAsyncThunk("/user/getAllUser", 
 async (_, {rejectWithValue}) => {
 try {
@@ -76,5 +75,26 @@ try {
 } catch (error) {
     return rejectWithValue(`Error from allUser: ${error.message}`);
 
+}
+})
+
+export const getUser = createAsyncThunk("user/getUser", 
+async ({userId},{rejectWithValue}) => {
+  try {
+    const response = await axios.get(`/api/users/${userId}`)
+  } catch (error) {
+    
+  }
+})
+
+export const followUser = createAsyncThunk("post/followUser", 
+async({followUserId,token},{rejectWithValue}) => {
+  console.log("wiring")
+  try {
+  const response = await axios.post(`/api/users/follow/${followUserId}`,{},{headers:{authorization: token}})  
+  console.log(response)
+  return response.data
+} catch (error) {
+  return rejectWithValue(`Error from followuser: ${error.message}`);
 }
 })

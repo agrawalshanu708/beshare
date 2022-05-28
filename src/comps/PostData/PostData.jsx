@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -10,10 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPostHandler, getAllPost } from "../../redux/slice/post/postServices";
 import { TokenOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { getAllUser } from "../../redux/slice/user/userService";
 
 const PostData = () => {
   const [post, setPost] = useState("");
-  const { foundUser, token } = useSelector((store) => store.users);
+  const {allUser, foundUser, token } = useSelector((store) => store.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const PostData = () => {
     await dispatch(createPostHandler({ postContent: post, token }));
     await dispatch(getAllPost())
   };
-  // console.log(foundUser)
+    
   return (
     <Box
       sx={{
@@ -79,7 +80,7 @@ const PostData = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {foundUser.following}
+            {foundUser.following.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Following{" "}
@@ -93,7 +94,7 @@ const PostData = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {foundUser.followers}
+            {foundUser.followers.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Followers
