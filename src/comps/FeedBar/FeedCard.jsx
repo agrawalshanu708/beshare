@@ -9,19 +9,22 @@ import { red } from "@mui/material/colors";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CardContent from "@mui/material/CardContent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Collapse } from "@mui/material";
+import { Collapse, FormControl, OutlinedInput } from "@mui/material";
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
 import { styled } from "@mui/material/styles";
-import { dislikePost, likePost } from "../../redux/slice/post/postServices";
+import { dislikePost, getAllComment, likePost } from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
 import {
   bookmarkPost,
   removeBookmarkPost,
 } from "../../redux/slice/user/userService";
+import {CommentPannel} from "./../index"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,9 +41,12 @@ function FeedCard({ post }) {
   const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
+  const {getCommentForPost,allPost} = useSelector(store => store.posts)
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    dispatch(getAllComment({postId: post._id}))
   };
+  console.log(getCommentForPost)
   const likeArray = post.likes.likedBy;
   const likeUser = likeArray.some((el) => el._id === foundUser._id);
   const bookmarkArray = foundUser.bookmarks;
@@ -67,6 +73,8 @@ function FeedCard({ post }) {
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
   };
+
+
   return (
     <Card>
       <CardHeader
@@ -119,7 +127,25 @@ function FeedCard({ post }) {
         />
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent></CardContent>
+        <CardContent>
+        <TextField sx = {{width: "100%"}}
+        id="input-with-icon-textfield"
+        label="shanu agrawal"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>
+          ),
+        }}
+        variant="standard"
+      /> 
+       {
+         getCommentForPost.map(el =>  <CommentPannel comment = {el}/>)
+       }
+      
+
+        </CardContent>
       </Collapse>
     </Card>
   );

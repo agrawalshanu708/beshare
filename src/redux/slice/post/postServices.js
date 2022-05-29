@@ -79,3 +79,15 @@ async ({postId,token},{rejectWithValue}) => {
     console.log(error)
   }
 })
+
+export const getAllComment = createAsyncThunk("post/getAllComment", 
+async ({postId},{rejectWithValue}) => {
+  try {
+    const response = await axios.get(`/api/comments/${postId}`)
+    console.log(response)
+    return response.data.comments
+  } catch (error) {
+    return rejectWithValue(`Error from getAllComment: ${error.message}`);
+  }
+}
+)

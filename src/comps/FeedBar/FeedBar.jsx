@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import { FeedCard } from "./FeedCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../redux/slice/post/postServices";
-
 function FeedBar() {
   const dispatch = useDispatch();
   useEffect(() => {

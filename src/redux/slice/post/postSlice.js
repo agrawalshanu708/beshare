@@ -6,12 +6,15 @@ import {
   dislikePost,
   editPost,
   getUserPost,
+  getAllComment,
 } from "./postServices";
+import { current } from "immer";
 
 const initialState = {
   allPost: [],
   userPost: [],
   status: false,
+  getCommentForPost :[]
 };
 
 const postSlice = createSlice({
@@ -79,6 +82,17 @@ const postSlice = createSlice({
     },
     [editPost.rejected]:(state) => {
         state.status = false
+    },
+    [getAllComment.pending]:(state) => {
+      state.status = true
+    },
+    [getAllComment.fulfilled]:(state,action) => {
+      state.status = false;
+      state.getCommentForPost = action.payload;
+    },
+    [getAllComment.rejected]:(state) => {
+      state.status = false;
+
     }
   },
 });

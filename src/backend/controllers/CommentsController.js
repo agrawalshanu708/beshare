@@ -11,7 +11,7 @@ import { v4 as uuid } from "uuid";
  * send GET Request at /api/comments/:postId
  * */
 
-export const getPostCommentsHandler = function (schema, request) {
+ export const getPostCommentsHandler = function (schema, request) {
   const postId = request.params.postId;
   try {
     const post = schema.posts.findBy({ _id: postId }).attrs;
