@@ -22,7 +22,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting",
+        text: "a",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -31,7 +31,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "yaswanthmyneni",
-        text: "Wow!",
+        text: "b!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -54,7 +54,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting, definetly!",
+        text: "c",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -63,7 +63,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shanuagrawal",
-        text: "Wow! Lets make it happen.",
+        text: "d",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -85,7 +85,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shanuagrawal",
-        text: "Interesting",
+        text: "e",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -94,7 +94,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "yaswanthmyneni",
-        text: "Wow!",
+        text: "f!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

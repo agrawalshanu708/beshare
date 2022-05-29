@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Box from "@mui/material/Box";
@@ -9,19 +10,26 @@ import { red } from "@mui/material/colors";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CardContent from "@mui/material/CardContent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Collapse } from "@mui/material";
+import { Button, Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { dislikePost, likePost } from "../../redux/slice/post/postServices";
+import {
+  addComment,
+  dislikePost,
+  editComment,
+  likePost,
+} from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
 import {
   bookmarkPost,
   removeBookmarkPost,
 } from "../../redux/slice/user/userService";
+import { CommentPannel } from "./../index";
+import TextField from "@mui/material/TextField";
+import { CommentMenu } from "../comments/EditCommentmodal/CommentMenu";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,7 +43,10 @@ const ExpandMore = styled((props) => {
 }));
 
 function FeedCard({ post }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  const [isEditComment, setIsEditComment] = useState(false);
+  const [targetComment, setTargetComment] = useState("");
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
   const handleExpandClick = () => {
@@ -44,7 +55,7 @@ function FeedCard({ post }) {
   const likeArray = post.likes.likedBy;
   const likeUser = likeArray.some((el) => el._id === foundUser._id);
   const bookmarkArray = foundUser.bookmarks;
-
+  const newComment = { ...targetComment, text: commentText };
   const findBookmarkPost = () => {
     if (bookmarkArray) {
       const bookmarkedPost = bookmarkArray.some((el) => el._id === post._id);
@@ -66,6 +77,22 @@ function FeedCard({ post }) {
 
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
+  };
+
+  const addCommentHandler = () => {
+    dispatch(addComment({ postId: post._id, commentData: commentText, token }));
+    setCommentText("");
+  };
+  const sendEditCommentHandler = async () => {
+    await dispatch(
+      editComment({
+        postId: post._id,
+        commentData: newComment,
+        commentId: targetComment._id,
+        token,
+      })
+    )
+   await setIsEditComment(false) 
   };
   return (
     <Card>
@@ -119,7 +146,7 @@ function FeedCard({ post }) {
         />
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent></CardContent>
+         <CommentMenu post = {post}/>
       </Collapse>
     </Card>
   );

@@ -2,19 +2,20 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { ProfileCard } from "./ProfileCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPost, getUserPost } from "../../../redux/slice/post/postServices";
-import {useEffect,useState} from "react" 
+import {
+  getAllPost,
+} from "../../../redux/slice/post/postServices";
+import { useEffect} from "react";
+import { FeedCard } from "../../FeedBar/FeedCard";
 const UserAllPost = () => {
-  const dispatch = useDispatch()
-  const {userPost, allPost } = useSelector((store) => store.posts);
-  const { foundUser, token } = useSelector((store) => store.users);
-  const username = foundUser.username
-  
-  useEffect(() => {
-   dispatch(getUserPost({username: username}))
-  },[])
+  const dispatch = useDispatch();
+  const { userPost, allPost } = useSelector((store) => store.posts);
+  const { foundUser } = useSelector((store) => store.users);
+  const personalPost = allPost.filter(
+    (el) => el.username === foundUser.username
+  );
+
   return (
     <Box sx={{ marginTop: "2rem" }}>
       <Box sx={{ cursor: "pointer" }}>
@@ -42,8 +43,8 @@ const UserAllPost = () => {
           margin: "0 1rem",
         }}
       >
-        {userPost.map((el) => (
-          <ProfileCard post={el} key = {el._id} />
+        {personalPost.map((el) => (
+          <FeedCard post={el} key={el._id} />
         ))}
       </Box>
     </Box>

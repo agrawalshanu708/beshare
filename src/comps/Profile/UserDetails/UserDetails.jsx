@@ -19,10 +19,9 @@ const UserDetails = () => {
     website: "shanuagrawal.com",
     bio: "I am a software developer who is well versed with JavaScript/ES6+ , ReactJS & Redux and an intermediate in UI/UX concepts. I can build web apps and can write modular code for better results. I am always eager to learn new technologies and methodologies",
   });
-  const { allPost,userPost } = useSelector((store) => store.posts);
+  const { allPost, userPost } = useSelector((store) => store.posts);
   const { foundUser, token } = useSelector((store) => store.users);
 
-  console.log(foundUser);
   return (
     <Box
       sx={{
@@ -58,7 +57,11 @@ const UserDetails = () => {
             <Typography variant="h6" component="div">
               {foundUser.firstName} {foundUser.lastName}{" "}
             </Typography>
-            <EditProfileModal userProfileDetails={userProfileDetails} setUserProfileDetails={setUserProfileDetails} foundUser={foundUser}  />
+            <EditProfileModal
+              userProfileDetails={userProfileDetails}
+              setUserProfileDetails={setUserProfileDetails}
+              foundUser={foundUser}
+            />
           </Box>
           <Typography variant="h6" component="div" sx={{ color: "gray" }}>
             {userProfileDetails.profession}
@@ -144,7 +147,7 @@ const UserDetails = () => {
             variant="p"
             component="span"
           >
-           {userProfileDetails.website}
+            {userProfileDetails.website}
           </Typography>
         </Box>
         <Box>

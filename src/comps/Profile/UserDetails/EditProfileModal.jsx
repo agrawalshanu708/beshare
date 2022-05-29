@@ -99,7 +99,6 @@ function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser 
             sx={{ display: "block", marginTop: "1rem" }}
             open={open}
             onClick={() => {
-              console.log(userProfileDetails);
               setOpen(false);
             }}
           >
