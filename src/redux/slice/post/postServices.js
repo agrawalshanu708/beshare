@@ -165,12 +165,35 @@ export const downvotedComment = createAsyncThunk(
   }
 );
 
-export const deleteComment = createAsyncThunk("post/deleteComment", 
-async ({postId, commentId, token},{rejectWithValue}) => {
-  try {
-  const response = await axios.post(`/api/comments/delete/${postId}/${commentId}`,{},{headers:{authorization:token}})
-  return response.data.posts;
-} catch (error) {
-  return rejectWithValue(`Error from deletecomment: ${error.message}`);
-}
-})
+export const deleteComment = createAsyncThunk(
+  "post/deleteComment",
+  async ({ postId, commentId, token }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/delete/${postId}/${commentId}`,
+        {},
+        { headers: { authorization: token } }
+      );
+      return response.data.posts;
+    } catch (error) {
+      return rejectWithValue(`Error from deletecomment: ${error.message}`);
+    }
+  }
+);
+
+export const editComment = createAsyncThunk(
+  "post/editComment",
+  async ({ postId, commentId, commentData, token }, { rejectWithValue }) => {
+    console.log(commentId,commentData)
+    try {
+      const response = await axios.post(
+        `/api/comments/edit/${postId}/${commentId}`,
+        { commentData: commentData },
+        { headers: { authorization: token } }
+      );
+      return response.data.posts;
+    } catch (error) {
+      return rejectWithValue(`Error from editcomment: ${error.message}`);
+    }
+  }
+);

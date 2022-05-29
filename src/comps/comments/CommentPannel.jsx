@@ -9,13 +9,18 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
 import {
-    deleteComment,
+    addComment,
+  deleteComment,
   downvotedComment,
+  editComment,
   upvoteComment,
 } from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
-const CommentPannel = ({ comment, post }) => {
+const CommentPannel = ({ comment, post, setIsEditComment,setCommentText,setTargetComment }) => {
+
   const dispatch = useDispatch();
   const { token, foundUser } = useSelector((store) => store.users);
 
@@ -27,6 +32,8 @@ const CommentPannel = ({ comment, post }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+ 
 
   const upvoteHandler = () => {
     dispatch(
@@ -54,79 +61,95 @@ const CommentPannel = ({ comment, post }) => {
     );
   };
 
+  const editCommentHandler = () => {
+    setAnchorEl(null);
+    setCommentText(comment.text);
+    setIsEditComment(true);
+    setTargetComment(comment)
+  };
+
+
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: "0.5rem",
-        marginTop: "1rem",
-        alignItems: "center",
-        padding: "0 0.5rem",
-      }}
-    >
-      <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        {comment.username.charAt(0)}
-      </Avatar>
+    <>
+      
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
           gap: "0.5rem",
-          justifyContent: "center",
-          flexGrow: "1",
+          marginTop: "1rem",
+          alignItems: "center",
+          padding: "0 0.5rem",
         }}
       >
-        <Box sx={{ display: "flex", gap: "0.5rem" }}>
-          <Typography sx={{ fontWeight: "bold" }} variant="p" component="span">
-            {comment.username}
-          </Typography>
-          <Typography variant="p" component="span">
-            {comment.text}
-          </Typography>
-        </Box>
-        <Box>
-          {upvoteUser ? (
-            <ThumbUpIcon />
-          ) : (
-            <ThumbUpOutlinedIcon onClick={upvoteHandler} />
-          )}
-          {downvoteUser ? (
-            <ThumbDownIcon />
-          ) : (
-            <ThumbDownOutlinedIcon onClick={downvoteHandler} />
-          )}
-        </Box>
-      </Box>
-      <Box>
-        {loginUserComment && (
-          <MoreVertOutlinedIcon
-            id="demo-positioned-button"
-            aria-controls={open ? "demo-positioned-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          />
-        )}
-        <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
+        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          {comment.username.charAt(0)}
+        </Avatar>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            justifyContent: "center",
+            flexGrow: "1",
           }}
         >
-          <MenuItem onClick={handleClose}>Edit</MenuItem>
-          <MenuItem onClick={deleteHandler}>Delete</MenuItem>
-        </Menu>
+          <Box sx={{ display: "flex", gap: "0.5rem" }}>
+            <Typography
+              sx={{ fontWeight: "bold" }}
+              variant="p"
+              component="span"
+            >
+              {comment.username}
+            </Typography>
+            <Typography variant="p" component="span">
+              {comment.text}
+            </Typography>
+          </Box>
+          <Box>
+            {upvoteUser ? (
+              <ThumbUpIcon />
+            ) : (
+              <ThumbUpOutlinedIcon onClick={upvoteHandler} />
+            )}
+            {downvoteUser ? (
+              <ThumbDownIcon />
+            ) : (
+              <ThumbDownOutlinedIcon onClick={downvoteHandler} />
+            )}
+          </Box>
+        </Box>
+        <Box>
+          {loginUserComment && (
+            <MoreVertOutlinedIcon
+              id="demo-positioned-button"
+              aria-controls={open ? "demo-positioned-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            />
+          )}
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            <MenuItem onClick={editCommentHandler}>Edit</MenuItem>
+            <MenuItem onClick={deleteHandler}>Delete</MenuItem>
+          </Menu>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

@@ -14,15 +14,12 @@ import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CardContent from "@mui/material/CardContent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Button, Collapse, FormControl, OutlinedInput } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
+import { Button, Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   addComment,
   dislikePost,
-  getAllComment,
+  editComment,
   likePost,
 } from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +28,7 @@ import {
   removeBookmarkPost,
 } from "../../redux/slice/user/userService";
 import { CommentPannel } from "./../index";
+import TextField from "@mui/material/TextField";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -45,7 +43,9 @@ const ExpandMore = styled((props) => {
 
 function FeedCard({ post }) {
   const [expanded, setExpanded] = useState(false);
-  const [comment, setComment] = useState("");
+  const [commentText, setCommentText] = useState("");
+  const [isEditComment, setIsEditComment] = useState(false);
+  const [targetComment, setTargetComment] = useState("");
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
   const handleExpandClick = () => {
@@ -54,7 +54,7 @@ function FeedCard({ post }) {
   const likeArray = post.likes.likedBy;
   const likeUser = likeArray.some((el) => el._id === foundUser._id);
   const bookmarkArray = foundUser.bookmarks;
-
+  const newComment = { ...targetComment, text: commentText };
   const findBookmarkPost = () => {
     if (bookmarkArray) {
       const bookmarkedPost = bookmarkArray.some((el) => el._id === post._id);
@@ -77,8 +77,21 @@ function FeedCard({ post }) {
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
   };
+
   const addCommentHandler = () => {
-    dispatch(addComment({ postId: post._id, commentData: comment, token }));
+    dispatch(addComment({ postId: post._id, commentData: commentText, token }));
+    setCommentText("");
+  };
+  const sendEditCommentHandler = async () => {
+    await dispatch(
+      editComment({
+        postId: post._id,
+        commentData: newComment,
+        commentId: targetComment._id,
+        token,
+      })
+    )
+   await setIsEditComment(false) 
   };
   return (
     <Card>
@@ -138,21 +151,38 @@ function FeedCard({ post }) {
               sx={{ width: "100%" }}
               id="standard-basic"
               label={foundUser.username}
-              value={comment}
+              value={commentText}
               variant="standard"
               placeholder="comment down your opinion"
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setCommentText(e.target.value)}
             />
-            <Button
-              variant="contained"
-              size="small"
-              onClick={addCommentHandler}
-            >
-              Add
-            </Button>
+            {isEditComment ? (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={sendEditCommentHandler}
+              >
+                Save
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={addCommentHandler}
+              >
+                Add
+              </Button>
+            )}
           </Box>
           {post.comments.map((el) => (
-            <CommentPannel comment={el} post= {post} />
+            <CommentPannel
+              comment={el}
+              post={post}
+              commentText={commentText}
+              setCommentText={setCommentText}
+              setIsEditComment={setIsEditComment}
+              setTargetComment={setTargetComment}
+            />
           ))}
         </CardContent>
       </Collapse>

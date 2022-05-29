@@ -11,6 +11,7 @@ import {
   upvoteComment,
   downvotedComment,
   deleteComment,
+  editComment,
 } from "./postServices";
 import { current } from "immer";
 
@@ -136,6 +137,16 @@ const postSlice = createSlice({
       state.allPost = action.payload;
     },
     [deleteComment.rejected]: (state) => {
+      state.status = false;
+    },
+    [editComment.pending]: (state) => {
+      state.status = true;
+    },
+    [editComment.fulfilled]: (state, action) => {
+      state.status = false;
+      state.allPost = action.payload;
+    },
+    [editComment.rejected]: (state) => {
       state.status = false;
     },
   },
