@@ -29,6 +29,7 @@ import {
 } from "../../redux/slice/user/userService";
 import { CommentPannel } from "./../index";
 import TextField from "@mui/material/TextField";
+import { CommentMenu } from "../comments/EditCommentmodal/CommentMenu";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -145,46 +146,7 @@ function FeedCard({ post }) {
         />
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Box sx={{ display: "flex", gap: "1rem" }}>
-            <TextField
-              sx={{ width: "100%" }}
-              id="standard-basic"
-              label={foundUser.username}
-              value={commentText}
-              variant="standard"
-              placeholder="comment down your opinion"
-              onChange={(e) => setCommentText(e.target.value)}
-            />
-            {isEditComment ? (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={sendEditCommentHandler}
-              >
-                Save
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={addCommentHandler}
-              >
-                Add
-              </Button>
-            )}
-          </Box>
-          {post.comments.map((el) => (
-            <CommentPannel
-              comment={el}
-              post={post}
-              commentText={commentText}
-              setCommentText={setCommentText}
-              setIsEditComment={setIsEditComment}
-              setTargetComment={setTargetComment}
-            />
-          ))}
-        </CardContent>
+         <CommentMenu post = {post}/>
       </Collapse>
     </Card>
   );
