@@ -6,3 +6,4 @@ export {UserAllPost} from "./Profile/UserAllPost/UserAllPost"
 export {UserCover} from "./Profile/UserCover/UserCover";
 export {UserDetails} from "./Profile/UserDetails/UserDetails"
 export {CommentPannel} from "./comments/CommentPannel"
+export {CommentMenu} from "./comments/EditCommentmodal/CommentMenu"

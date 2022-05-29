@@ -143,24 +143,12 @@ export const deletePostCommentHandler = function (schema, request) {
     }
     const { postId, commentId } = request.params;
     const post = schema.posts.findBy({ _id: postId }).attrs;
-    const commentIndex = post.comments.findIndex(
-      (comment) => comment._id === commentId
-    );
-    if (
-      post.comments[commentIndex].username !== user.username &&
-      post.username !== user.username
-    ) {
-      return new Response(
-        400,
-        {},
-        { errors: ["Cannot delete a comment doesn't belong to the User."] }
-      );
-    }
+
     post.comments = post.comments.filter(
       (comment) => comment._id !== commentId
     );
     this.db.posts.update({ _id: postId }, post);
-    return new Response(201, {}, { comments: post.comments });
+    return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
       500,
