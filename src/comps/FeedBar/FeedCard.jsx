@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Box from "@mui/material/Box";
@@ -13,18 +14,23 @@ import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CardContent from "@mui/material/CardContent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Collapse, FormControl, OutlinedInput } from "@mui/material";
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
+import { Button, Collapse, FormControl, OutlinedInput } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import { dislikePost, getAllComment, likePost } from "../../redux/slice/post/postServices";
+import {
+  addComment,
+  dislikePost,
+  getAllComment,
+  likePost,
+} from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
 import {
   bookmarkPost,
   removeBookmarkPost,
 } from "../../redux/slice/user/userService";
-import {CommentPannel} from "./../index"
+import { CommentPannel } from "./../index";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -38,15 +44,13 @@ const ExpandMore = styled((props) => {
 }));
 
 function FeedCard({ post }) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [comment, setComment] = useState("");
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
-  const {getCommentForPost,allPost} = useSelector(store => store.posts)
   const handleExpandClick = () => {
     setExpanded(!expanded);
-    dispatch(getAllComment({postId: post._id}))
   };
-  console.log(getCommentForPost)
   const likeArray = post.likes.likedBy;
   const likeUser = likeArray.some((el) => el._id === foundUser._id);
   const bookmarkArray = foundUser.bookmarks;
@@ -73,8 +77,9 @@ function FeedCard({ post }) {
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
   };
-
-
+  const addCommentHandler = () => {
+    dispatch(addComment({ postId: post._id, commentData: comment, token }));
+  };
   return (
     <Card>
       <CardHeader
@@ -128,23 +133,27 @@ function FeedCard({ post }) {
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-        <TextField sx = {{width: "100%"}}
-        id="input-with-icon-textfield"
-        label="shanu agrawal"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          ),
-        }}
-        variant="standard"
-      /> 
-       {
-         getCommentForPost.map(el =>  <CommentPannel comment = {el}/>)
-       }
-      
-
+          <Box sx={{ display: "flex", gap: "1rem" }}>
+            <TextField
+              sx={{ width: "100%" }}
+              id="standard-basic"
+              label={foundUser.username}
+              value={comment}
+              variant="standard"
+              placeholder="comment down your opinion"
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              size="small"
+              onClick={addCommentHandler}
+            >
+              Add
+            </Button>
+          </Box>
+          {post.comments.map((el) => (
+            <CommentPannel comment={el} post= {post} />
+          ))}
         </CardContent>
       </Collapse>
     </Card>
