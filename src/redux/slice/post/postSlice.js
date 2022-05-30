@@ -83,7 +83,7 @@ const postSlice = createSlice({
     },
     [editPost.fulfilled]: (state, action) => {
       state.status = false;
-      state.allPost = action.payload;
+      state.allPost = action.payload.posts;
     },
     [editPost.rejected]: (state) => {
       state.status = false;
@@ -103,7 +103,6 @@ const postSlice = createSlice({
     },
     [addComment.fulfilled]: (state, action) => {
       state.status = false;
-      console.log(action.payload);
       state.allPost = action.payload;
     },
     [addComment.rejected]: (state) => {

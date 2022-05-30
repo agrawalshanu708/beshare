@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Box from "@mui/material/Box";
@@ -8,13 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CardContent from "@mui/material/CardContent";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Button, Collapse } from "@mui/material";
+import { Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import {
   addComment,
@@ -27,9 +26,8 @@ import {
   bookmarkPost,
   removeBookmarkPost,
 } from "../../redux/slice/user/userService";
-import { CommentPannel } from "./../index";
-import TextField from "@mui/material/TextField";
 import { CommentMenu } from "../comments/EditCommentmodal/CommentMenu";
+import { CardMenu } from "./CardMenu";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -104,7 +102,7 @@ function FeedCard({ post }) {
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+            <CardMenu post = {post}/>
           </IconButton>
         }
         title={post.username}
