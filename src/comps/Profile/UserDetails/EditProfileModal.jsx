@@ -1,10 +1,11 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Modal from "@mui/material/Modal";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-
+import {
+  TextField,
+  Button,
+  Box,
+  Modal,
+  ModeEditOutlineOutlinedIcon,
+} from "../../../utils/MaterialUI";
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,12 +17,15 @@ const style = {
   boxShadow: 24,
   p: 4,
   display: "grid",
-  gridTemplateColumns : "200px 200px",
-  gap: "1rem"
-
+  gridTemplateColumns: "200px 200px",
+  gap: "1rem",
 };
 
-function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser }) {
+function EditProfileModal({
+  userProfileDetails,
+  setUserProfileDetails,
+  foundUser,
+}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,16 +44,19 @@ function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser 
             id="standard-basic"
             label="First Name "
             variant="standard"
-            value= {foundUser.firstName}
+            value={foundUser.firstName}
           />
-          <TextField id="standard-basic" label="Last Name" variant="standard"
-          value = {foundUser.lastName}
+          <TextField
+            id="standard-basic"
+            label="Last Name"
+            variant="standard"
+            value={foundUser.lastName}
           />
           <TextField
             id="standard-basic"
             label="Profession"
             variant="standard"
-            value = {userProfileDetails.profession}
+            value={userProfileDetails.profession}
             onChange={(e) =>
               setUserProfileDetails((prev) => ({
                 ...prev,
@@ -61,7 +68,7 @@ function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser 
             id="standard-basic"
             label="Contact Number"
             variant="standard"
-            value = {userProfileDetails.contactNumber}
+            value={userProfileDetails.contactNumber}
             onChange={(e) =>
               setUserProfileDetails((prev) => ({
                 ...prev,
@@ -73,7 +80,7 @@ function EditProfileModal({ userProfileDetails, setUserProfileDetails,foundUser 
             id="standard-basic"
             label="Website"
             variant="standard"
-            value = {userProfileDetails.website}
+            value={userProfileDetails.website}
             onChange={(e) =>
               setUserProfileDetails((prev) => ({
                 ...prev,

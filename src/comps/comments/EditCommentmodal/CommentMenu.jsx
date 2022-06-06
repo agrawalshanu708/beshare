@@ -1,8 +1,5 @@
 import React from "react";
-import CardContent from "@mui/material/CardContent";
-import Box from "@mui/material/Box";
-import { Button, Collapse } from "@mui/material";
-import TextField from "@mui/material/TextField";
+import { CardContent, Button, TextField, Box } from "../../../utils/MaterialUI";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,7 +30,7 @@ const CommentMenu = ({ post }) => {
       })
     );
     await setIsEditComment(false);
-    await setCommentText("")
+    await setCommentText("");
   };
   return (
     <>

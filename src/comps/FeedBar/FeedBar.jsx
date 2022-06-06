@@ -7,7 +7,7 @@ function FeedBar() {
   
   const dispatch = useDispatch();
   const { allPost } = useSelector((store) => store.posts);
-
+  
   useEffect(() => {
     dispatch(getAllPost());
   }, []); 
@@ -18,8 +18,7 @@ function FeedBar() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "1rem",
-          marginTop: "3.5rem",
+          marginTop: "1rem",
         }}
       >
         {

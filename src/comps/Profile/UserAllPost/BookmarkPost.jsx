@@ -1,4 +1,4 @@
-import { Box } from '@mui/system';
+import { Box } from '../../../utils/MaterialUI';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '../../../redux/slice/user/userService';

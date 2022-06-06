@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import MenuItem from "@mui/material/MenuItem";
-import { TextareaAutosize } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  editPost,
-  getAllPost,
-  getUserPost,
-} from "../../redux/slice/post/postServices";
+  Button,
+  MenuItem,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  useMediaQuery,
+  useTheme,
+  TextareaAutosize,
+} from "../../utils/MaterialUI";
+import { useDispatch, useSelector } from "react-redux";
+import { editPost, getAllPost } from "../../redux/slice/post/postServices";
 
 function EditPost({ post }) {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +18,6 @@ function EditPost({ post }) {
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
   const finalPost = { ...post, content: newPost };
-  const username = foundUser.username;
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -40,8 +35,7 @@ function EditPost({ post }) {
     // await dispatch(getUserPost({ username: username }));
     await dispatch(getAllPost());
     setOpen(false);
-    console.log("trigger" + 1)
-
+    console.log("trigger" + 1);
   };
 
   return (

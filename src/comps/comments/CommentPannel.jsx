@@ -1,26 +1,31 @@
-import { Avatar, Box, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
 import React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
-import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
 import {
-    addComment,
+  Avatar,
+  Box,
+  Typography,
+  red,
+  Menu,
+  MenuItem,
+  ThumbUpOutlinedIcon,
+  ThumbUpIcon,
+  ThumbDownIcon,
+  ThumbDownOutlinedIcon,
+  MoreVertOutlinedIcon,
+} from "../../utils/MaterialUI";
+import {
   deleteComment,
   downvotedComment,
-  editComment,
   upvoteComment,
 } from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
-const CommentPannel = ({ comment, post, setIsEditComment,setCommentText,setTargetComment }) => {
 
+const CommentPannel = ({
+  comment,
+  post,
+  setIsEditComment,
+  setCommentText,
+  setTargetComment,
+}) => {
   const dispatch = useDispatch();
   const { token, foundUser } = useSelector((store) => store.users);
 
@@ -32,8 +37,6 @@ const CommentPannel = ({ comment, post, setIsEditComment,setCommentText,setTarge
   const handleClose = () => {
     setAnchorEl(null);
   };
-
- 
 
   const upvoteHandler = () => {
     dispatch(
@@ -65,14 +68,11 @@ const CommentPannel = ({ comment, post, setIsEditComment,setCommentText,setTarge
     setAnchorEl(null);
     setCommentText(comment.text);
     setIsEditComment(true);
-    setTargetComment(comment)
+    setTargetComment(comment);
   };
-
-
 
   return (
     <>
-      
       <Box
         sx={{
           display: "flex",

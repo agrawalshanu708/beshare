@@ -1,12 +1,8 @@
 import React from "react";
-import { PostData,FeedBar,FollowUser} from "../../comps/index";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import { PostData, FeedTabs, FollowUser } from "../../comps/index";
+import {Grid,Box} from "../../utils/MaterialUI";
 
 const Home = () => {
-
-
-
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
@@ -17,7 +13,7 @@ const Home = () => {
 
       <Grid item xs={5}>
         <Box>
-          <FeedBar />
+          <FeedTabs />
         </Box>
       </Grid>
 
@@ -30,4 +26,4 @@ const Home = () => {
   );
 };
 
-export  {Home};
+export { Home };

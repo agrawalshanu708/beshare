@@ -1,16 +1,9 @@
 import React, { useState,useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import Avatar from "@mui/material/Avatar";
+import {Avatar,Button,TextField,Typography,Box,AddCircleOutlineOutlinedIcon} from "../../utils/MaterialUI"
 import { cover1, avatar1 } from "../../Assets/index";
 import { useDispatch, useSelector } from "react-redux";
 import { createPostHandler, getAllPost } from "../../redux/slice/post/postServices";
-import { TokenOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { getAllUser } from "../../redux/slice/user/userService";
 
 const PostData = () => {
   const [post, setPost] = useState("");
@@ -26,15 +19,16 @@ const PostData = () => {
   return (
     <Box
       sx={{
-        minHeight: "90vh",
+        height: "82vh",
         backgroundColor: "#fafafa",
-        // position: 'fixed',
+        position: 'fixed',
         width: "17rem",
-        marginTop: "3.5rem",
-        overFlow: "scroll",
-        backgroundColor: "#ffffff",
+        marginTop: "5.5rem",
+        overflow: "auto",
+        // backgroundColor: "#ffffff",
+        marginLeft: "0.5rem"
       }}
-    >
+    >  
       <Box
         sx={{
           height: "10rem",

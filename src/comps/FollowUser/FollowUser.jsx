@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-
+import {Box,Typography} from "../../utils/MaterialUI"
 import { UserCard } from "./UserCard";
 import { getAllUser } from "../../redux/slice/user/userService";
 import { useDispatch, useSelector } from "react-redux";
-
+import  "./FollowBar.css"
 const FollowUser = () => {
   const state = useSelector((store) => store.users)
 
@@ -22,7 +20,7 @@ const dispatch = useDispatch();
         height: "82vh",
         overflow: "auto",
         position: "fixed",
-        marginTop: "3.5rem",
+        marginTop: "5.6rem",
         width: "23rem",
       }}
     >
@@ -33,8 +31,8 @@ const dispatch = useDispatch();
           padding: "1rem 1rem",
         }}
       >
-        <Typography>Suggest For you</Typography>
-        <Typography>See All</Typography>
+        <Typography sx = {{fontFamily: 'Varela Round', fontWeight:"bold",fontSize:20}}>Suggest For you</Typography>
+        <Typography sx = {{fontFamily:'Varela Round', fontSize:17,color:"#0a1647"}}>See All</Typography>
       </Box>
 
       {

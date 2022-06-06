@@ -1,18 +1,20 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import {useState} from "react"
+import {
+  Typography,
+  Box,
+  Grid,
+  TextField,
+  Button,
+  Avatar,
+  CssBaseline,
+  Link,
+  LockOutlinedIcon,
+  Container,
+} from "../../utils/MaterialUI";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signupHandler } from "../../redux/slice/user/userService";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 function Signup() {
   const [signupCredential, setSignupCredential] = useState({
     firstName: "",
@@ -20,24 +22,28 @@ function Signup() {
     username: "",
     password: "",
   });
-   const dispatch = useDispatch()
-   const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const clickHandler = () => {
-      dispatch(signupHandler({
+    dispatch(
+      signupHandler({
         firstName: signupCredential.firstName,
         lastName: signupCredential.lastName,
         username: signupCredential.username,
-        password: signupCredential.password
-      }))
-  }
-const guestHandler = () => {
-  dispatch(signupHandler({
-    firstName: "shanu",
-    lastName: "agrawal",
-    username: "shanuagrawal",
-    password: "shanu123"
-  })).then(() => navigate("/login"))
-}
+        password: signupCredential.password,
+      })
+    );
+  };
+  const guestHandler = () => {
+    dispatch(
+      signupHandler({
+        firstName: "shanu",
+        lastName: "agrawal",
+        username: "shanuagrawal",
+        password: "shanu123",
+      })
+    ).then(() => navigate("/login"));
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
