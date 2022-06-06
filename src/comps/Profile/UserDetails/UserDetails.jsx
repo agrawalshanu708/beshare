@@ -1,15 +1,10 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
-import PhoneAndroidOutlinedIcon from "@mui/icons-material/PhoneAndroidOutlined";
+
+import {Box,Avatar,Typography,Divider,LanguageOutlinedIcon,PhoneAndroidOutlinedIcon,MarkEmailReadOutlinedIcon} from "../../../utils/MaterialUI"
 import { avatar1 } from "../../../Assets/index";
 import { useSelector } from "react-redux";
 import { EditProfileModal } from "./EditProfileModal";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 
 const UserDetails = () => {
   const [personalPost, setPersonalPost] = useState([]);

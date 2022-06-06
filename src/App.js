@@ -9,8 +9,8 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path = "/login" element ={<Login/>}/>
-      <Route path = "/Signup" element ={<Signup/>}/>
-      <Route path = "/" element ={<Home/>}/>
+      <Route path = "/" element ={<Signup/>}/>
+      <Route path = "/home" element ={<Home/>}/>
       <Route path = "/profile" element = {<Profile/>}/>
      
     </Routes>

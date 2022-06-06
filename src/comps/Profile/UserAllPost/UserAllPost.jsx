@@ -1,7 +1,6 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import {useSelector } from "react-redux";
+import { Box, Divider } from "../../../utils/MaterialUI";
+import { useSelector } from "react-redux";
 import { FeedCard } from "../../FeedBar/FeedCard";
 
 const UserAllPost = () => {

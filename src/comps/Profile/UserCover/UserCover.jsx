@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import {Box} from "../../../utils/MaterialUI";
 import { cover1 } from "../../../Assets/index";
 const UserCover = () => {
   return (

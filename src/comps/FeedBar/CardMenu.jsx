@@ -1,10 +1,8 @@
 import * as React from "react";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useSelector } from "react-redux";
-import { EditPostModal } from "../index";
+import { MoreVertIcon, Menu, MenuItem } from "../../utils/MaterialUI";
+import { useDispatch, useSelector } from "react-redux";
 import { EditPost } from "./EditPost";
+import { deletePost } from "../../redux/slice/post/postServices";
 function CardMenu({ post }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -14,9 +12,12 @@ function CardMenu({ post }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
-  const { allPost } = useSelector((store) => store.posts);
   const userPost = post.username === foundUser.username;
+  const deletePostHandler = () => {
+    dispatch(deletePost({ postId: post._id, token }));
+  };
   return (
     <div>
       <MoreVertIcon
@@ -38,8 +39,8 @@ function CardMenu({ post }) {
       >
         {userPost && (
           <span>
-            <EditPost post ={post} />
-            <MenuItem onClick={handleClose}>Delete</MenuItem>
+            <EditPost post={post} />
+            <MenuItem onClick={deletePostHandler}>Delete</MenuItem>
           </span>
         )}
         <MenuItem onClick={handleClose}>share</MenuItem>

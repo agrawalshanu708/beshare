@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-  Typography,
-  Box,
-  PropTypes,
-  Tabs,
-  Tab,
-} from "../../../utils/MaterialUI";
-
-import { UserAllPost } from "./UserAllPost";
-import { BookmarkPost } from "./BookmarkPost";
+import { Typography, Box, PropTypes, Tabs, Tab } from "../../utils/MaterialUI";
+import { TrendingBar } from "./TrendingBar";
+import { FeedBar } from "./FeedBar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,7 +36,7 @@ function a11yProps(index) {
   };
 }
 
-function ProfileTabs() {
+function FeedTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -63,12 +56,12 @@ function ProfileTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <UserAllPost />
+        <FeedBar />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <BookmarkPost />
+        <TrendingBar />
       </TabPanel>
     </Box>
   );
 }
-export { ProfileTabs };
+export { FeedTabs };

@@ -1,20 +1,22 @@
 import * as React from "react";
 import { useState } from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
-import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-import CardContent from "@mui/material/CardContent";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import { Collapse } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {
+  styled,
+  Collapse,
+  ThumbUpIcon,
+  CardContent,
+  ThumbUpOutlinedIcon,
+  red,
+  Typography,
+  Avatar,
+  Box,
+  Card,
+  CardHeader,
+  IconButton,
+  CommentOutlinedIcon,
+  BookmarkAddOutlinedIcon,
+  BookmarkAddIcon,
+} from "../../utils/MaterialUI";
 import {
   addComment,
   dislikePost,
@@ -89,11 +91,11 @@ function FeedCard({ post }) {
         commentId: targetComment._id,
         token,
       })
-    )
-   await setIsEditComment(false) 
+    );
+    await setIsEditComment(false);
   };
   return (
-    <Card>
+    <Box sx={{ border: "0.6px solid #e4f5f9" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -102,28 +104,32 @@ function FeedCard({ post }) {
         }
         action={
           <IconButton aria-label="settings">
-            <CardMenu post = {post}/>
+            <CardMenu post={post} />
           </IconButton>
         }
         title={post.username}
         subheader="September 14, 2016"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          sx={{ fontFamily: "Lato", fontWeight: "bold", fontSize: 17 }}
+          variant="body2"
+          color="text.secondary"
+        >
           {post.content}
         </Typography>
       </CardContent>
       <Box
         sx={{
           display: "flex",
-          gap: "1rem",
+          gap: "0.5rem",
           alignItems: "center",
           margin: "0 0 1rem 1rem",
         }}
       >
         <span>
           {likeUser ? (
-            <ThumbUpIcon onClick={dislikeHandler} />
+            <ThumbUpIcon sx={{ fontWeight: "100" }} onClick={dislikeHandler} />
           ) : (
             <ThumbUpOutlinedIcon onClick={likeHandler} />
           )}
@@ -144,9 +150,9 @@ function FeedCard({ post }) {
         />
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-         <CommentMenu post = {post}/>
+        <CommentMenu post={post} />
       </Collapse>
-    </Card>
+    </Box>
   );
 }
 export { FeedCard };
