@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+
 import {
   createPostHandler,
   getAllPost,
@@ -64,7 +66,6 @@ const postSlice = createSlice({
     [likePost.fulfilled]: (state, action) => {
       state.allPost = action.payload;
       state.status = false;
-      // localStorage.setItem("post", allPost)
     },
     [likePost.rejected]: (state) => {
       state.status = false;

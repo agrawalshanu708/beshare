@@ -30,6 +30,7 @@ import {
 } from "../../redux/slice/user/userService";
 import { CommentMenu } from "../comments/EditCommentmodal/CommentMenu";
 import { CardMenu } from "./CardMenu";
+import { toast } from "react-toastify";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -64,7 +65,8 @@ function FeedCard({ post }) {
   };
 
   const likeHandler = () => {
-    dispatch(likePost({ token, postId: post._id }));
+    dispatch(likePost({ token, postId: post._id }))
+    // toast.success('added new post');
   };
 
   const dislikeHandler = () => {

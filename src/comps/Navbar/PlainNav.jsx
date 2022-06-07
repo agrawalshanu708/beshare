@@ -11,7 +11,7 @@ const PlainNav = () => {
           variant="h5"
           component="div"
           onClick={() => navigate("/home")}
-          sx={{ fontFamily: `'Pacifico', cursive`, fontSize: "2.5rem" }}
+          sx={{ fontFamily: `'Pacifico', cursive`, fontSize: "2.5rem", color: "#0a1647" }}
         >
           beShare.
         </Typography>
