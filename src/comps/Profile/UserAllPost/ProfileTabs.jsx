@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-function ProfileTabs() {
+function ProfileTabs({userId}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -63,10 +63,10 @@ function ProfileTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <UserAllPost />
+        <UserAllPost  userId = {userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <BookmarkPost />
+        <BookmarkPost  userId = {userId} />
       </TabPanel>
     </Box>
   );

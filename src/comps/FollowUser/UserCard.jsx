@@ -3,10 +3,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { avatar1 } from "../../Assets/index";
 import { followUser, unfollowUser } from "../../redux/slice/user/userService";
+import { useNavigate } from "react-router-dom";
 
 const UserCard = ({ user }) => {
   const dispatch = useDispatch();
-  const { foundUser, token } = useSelector((store) => store.users);
+  const { foundUser, token, allUser } = useSelector((store) => store.users);
 
   const followHandler = () => {
     dispatch(followUser({ followUserId: user._id, token }));
@@ -16,7 +17,8 @@ const UserCard = ({ user }) => {
   const unfollowHandler = () => {
     dispatch(unfollowUser({ followUserId: user._id, token }));
   };
-
+  const navigate = useNavigate()
+  console.log(allUser);
   return (
     <>
       <Box
@@ -26,7 +28,7 @@ const UserCard = ({ user }) => {
           margin: "0.5rem 1rem",
         }}
       >
-        <Avatar alt="Remy Sharp" src={avatar1} />
+        <Avatar alt="Remy Sharp" src={avatar1} onClick = {() => navigate(`/profile/${user._id}`)} />
         <Box sx={{ flexGrow: "1" }}>
           <Typography sx={{ fontSize: "1.2rem" }}>
             {user.firstName}

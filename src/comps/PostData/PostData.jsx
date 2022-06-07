@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import {Avatar,Button,TextField,Typography,Box,AddCircleOutlineOutlinedIcon} from "../../utils/MaterialUI"
 import { cover1, avatar1 } from "../../Assets/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +25,6 @@ const PostData = () => {
         width: "17rem",
         marginTop: "5.5rem",
         overflow: "auto",
-        // backgroundColor: "#ffffff",
         marginLeft: "0.5rem"
       }}
     >  
@@ -54,7 +53,7 @@ const PostData = () => {
           }}
           alt="Travis Howard"
           src={avatar1}
-          onClick = {() => navigate("/profile")}
+          onClick = {() => navigate(`/profile/${foundUser._id}`)}
 
         />
       </Box>
@@ -77,7 +76,7 @@ const PostData = () => {
             {foundUser.following.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
-            Following{" "}
+            Following
           </Typography>
         </Box>
         <Box

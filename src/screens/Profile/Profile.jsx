@@ -7,13 +7,17 @@ import {
   UserAllPost,
   ProfileTabs,
 } from "../../comps/index";
+ import {useParams} from "react-router-dom"
+
 const Profile = () => {
+  const {userId} = useParams();
+
   return (
     <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Box>
-            <UserCover />
+            <UserCover userId = {userId} />
           </Box>
         </Grid>
       </Grid>
@@ -21,13 +25,13 @@ const Profile = () => {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Box>
-            <UserDetails />
+            <UserDetails userId = {userId} />
           </Box>
         </Grid>
 
         <Grid item xs={8}>
           <Box>
-            <ProfileTabs />
+            <ProfileTabs  userId = {userId} />
           </Box>
         </Grid>
       </Grid>

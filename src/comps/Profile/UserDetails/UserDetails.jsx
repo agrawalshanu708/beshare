@@ -1,21 +1,30 @@
 import React from "react";
 
-import {Box,Avatar,Typography,Divider,LanguageOutlinedIcon,PhoneAndroidOutlinedIcon,MarkEmailReadOutlinedIcon} from "../../../utils/MaterialUI"
+import {
+  Box,
+  Avatar,
+  Typography,
+  Divider,
+  LanguageOutlinedIcon,
+  PhoneAndroidOutlinedIcon,
+  MarkEmailReadOutlinedIcon,
+} from "../../../utils/MaterialUI";
 import { avatar1 } from "../../../Assets/index";
 import { useSelector } from "react-redux";
 import { EditProfileModal } from "./EditProfileModal";
-import {useState } from "react";
+import { useState } from "react";
 
-const UserDetails = () => {
-  const [personalPost, setPersonalPost] = useState([]);
+const UserDetails = ({ userId }) => {
   const [userProfileDetails, setUserProfileDetails] = useState({
     profession: "software developer",
     contactNumber: "9424431504",
     website: "shanuagrawal.com",
     bio: "I am a software developer who is well versed with JavaScript/ES6+ , ReactJS & Redux and an intermediate in UI/UX concepts. I can build web apps and can write modular code for better results. I am always eager to learn new technologies and methodologies",
   });
-  const { allPost, userPost } = useSelector((store) => store.posts);
-  const { foundUser, token } = useSelector((store) => store.users);
+  const { foundUser, allUser } = useSelector((store) => store.users);
+  const { allPost } = useSelector((store) => store.posts);
+  const user = allUser.find((el) => el._id === userId);
+  const userPost = allPost.filter((el) => el.username === user.username);
 
   return (
     <Box
@@ -50,16 +59,16 @@ const UserDetails = () => {
         <Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography variant="h6" component="div">
-              {foundUser.firstName} {foundUser.lastName}{" "}
+              {user.firstName} {user.lastName}
             </Typography>
             <EditProfileModal
               userProfileDetails={userProfileDetails}
               setUserProfileDetails={setUserProfileDetails}
-              foundUser={foundUser}
+              user={user}
             />
           </Box>
           <Typography variant="h6" component="div" sx={{ color: "gray" }}>
-            {userProfileDetails.profession}
+            {user.bio}
           </Typography>
         </Box>
       </Box>
@@ -80,7 +89,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {foundUser.following.length}
+            {user.following.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Following{" "}
@@ -110,7 +119,7 @@ const UserDetails = () => {
           }}
         >
           <Typography variant="h6" component="div">
-            {foundUser.followers.length}
+            {user.followers.length}
           </Typography>
           <Typography sx={{ color: "gray" }} variant="p" component="div">
             Followers
@@ -135,16 +144,7 @@ const UserDetails = () => {
         <Typography sx={{ margin: "0.5rem 1rem" }} variant="h6" component="div">
           Contact Me
         </Typography>
-        <Box>
-          <LanguageOutlinedIcon />
-          <Typography
-            sx={{ margin: "0.5rem 1rem" }}
-            variant="p"
-            component="span"
-          >
-            {userProfileDetails.website}
-          </Typography>
-        </Box>
+
         <Box>
           <MarkEmailReadOutlinedIcon />
           <Typography
@@ -152,7 +152,7 @@ const UserDetails = () => {
             variant="p"
             component="span"
           >
-            {foundUser.username}
+            {user.username}
           </Typography>
         </Box>
         <Box>

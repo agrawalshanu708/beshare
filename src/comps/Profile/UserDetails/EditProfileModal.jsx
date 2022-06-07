@@ -24,7 +24,7 @@ const style = {
 function EditProfileModal({
   userProfileDetails,
   setUserProfileDetails,
-  foundUser,
+  user,
 }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,19 +44,19 @@ function EditProfileModal({
             id="standard-basic"
             label="First Name "
             variant="standard"
-            value={foundUser.firstName}
+            value={user.firstName}
           />
           <TextField
             id="standard-basic"
             label="Last Name"
             variant="standard"
-            value={foundUser.lastName}
+            value={user.lastName}
           />
           <TextField
             id="standard-basic"
             label="Profession"
             variant="standard"
-            value={userProfileDetails.profession}
+            value={user.bio}
             onChange={(e) =>
               setUserProfileDetails((prev) => ({
                 ...prev,
@@ -73,18 +73,6 @@ function EditProfileModal({
               setUserProfileDetails((prev) => ({
                 ...prev,
                 contactNumber: e.target.value,
-              }))
-            }
-          />
-          <TextField
-            id="standard-basic"
-            label="Website"
-            variant="standard"
-            value={userProfileDetails.website}
-            onChange={(e) =>
-              setUserProfileDetails((prev) => ({
-                ...prev,
-                website: e.target.value,
               }))
             }
           />

@@ -96,7 +96,9 @@ export const followUser = createAsyncThunk(
         {},
         { headers: { authorization: token } }
       );
+      console.log(response)
       return response.data;
+
     } catch (error) {
       return rejectWithValue(`Error from followuser: ${error.message}`);
     }

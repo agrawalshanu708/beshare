@@ -4,20 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '../../../redux/slice/user/userService';
 import { FeedCard } from '../../FeedBar/FeedCard';
 
-const BookmarkPost = () => {
+const BookmarkPost = ({userId}) => {
     const dispatch = useDispatch()
-    const { foundUser,allUser } = useSelector((store) => store.users);
+    const {allUser} = useSelector((store) => store.users);
     
+    const user = allUser.find(el => el._id === userId)
+
     useEffect(() => {
         dispatch(getAllUser())
     },[])
     
-  
   return (
     <>
     <Box sx = {{display:"flex",flexDirection: "column", gap:"0.5rem"}}>
     {
-        foundUser.bookmarks.map(el => <FeedCard post = {el}/>)
+        user.bookmarks.map(el => <FeedCard post = {el}/>)
     }
     </Box>
     </>

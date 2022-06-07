@@ -16,7 +16,6 @@ const initialState = {
   foundUser: {},
   token: "",
 };
-
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -83,6 +82,10 @@ const userSlice = createSlice({
     [followUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.foundUser = action.payload.user;
+      const newFollowedUser = state.allUser.filter(
+        (el) => el._id !== action.payload.followUser._id
+      );
+      state.allUser = [...newFollowedUser, action.payload.followUser];
     },
     [followUser.rejected]: (state, action) => {
       state.loading = false;
@@ -93,6 +96,10 @@ const userSlice = createSlice({
     [unfollowUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.foundUser = action.payload.user;
+      const newFollowedUser = state.allUser.filter(
+        (el) => el._id !== action.payload.followUser._id
+      );
+      state.allUser = [...newFollowedUser, action.payload.followUser];
     },
     [unfollowUser.rejected]: (state) => {
       state.loading = false;
