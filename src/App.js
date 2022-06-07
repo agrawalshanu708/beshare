@@ -1,12 +1,13 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,useLocation } from "react-router-dom";
 import "./App.css";
-import { Navbar } from "./comps";
+import { Navbar, PlainNav } from "./comps";
 import {Login, Signup,Home,Profile} from "./screens/index"
 function App() {
+  const location = useLocation()
   return (
     <div className="App">
-    <Navbar/>
+    {location['pathname'] === "/login" ? <PlainNav/> : <Navbar/>}
     <Routes>
       <Route path = "/login" element ={<Login/>}/>
       <Route path = "/" element ={<Signup/>}/>

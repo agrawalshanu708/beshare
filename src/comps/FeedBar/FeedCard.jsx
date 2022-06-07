@@ -94,6 +94,7 @@ function FeedCard({ post }) {
     );
     await setIsEditComment(false);
   };
+
   return (
     <Box sx={{ border: "0.6px solid #e4f5f9" }}>
       <CardHeader
@@ -108,7 +109,7 @@ function FeedCard({ post }) {
           </IconButton>
         }
         title={post.username}
-        subheader="September 14, 2016"
+        subheader={post.createdAt}
       />
       <CardContent>
         <Typography

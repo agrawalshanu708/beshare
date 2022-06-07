@@ -8,11 +8,13 @@ import {
   HomeOutlinedIcon,
   Grid,
 } from "../../utils/MaterialUI";
-// import { avatar1 } from "../../Assets/index";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
+const {allUser, foundUser, token } = useSelector((store) => store.users);
+
 
   return (
     <Box
@@ -21,7 +23,6 @@ const Navbar = () => {
         width: "100%",
         top: 0,
         left: 0,
-        // border:'1px solid black'
       }}
     >
       <Grid
@@ -36,7 +37,12 @@ const Navbar = () => {
           <Typography
             variant="h5"
             component="div"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              if(token) {navigate("/home")}
+              else{alert("login first")}    
+            }}
+            sx = {{fontFamily: `'Pacifico', cursive`,fontSize:'2.5rem'}}
+
           >
             beShare.
           </Typography>
@@ -82,7 +88,7 @@ const Navbar = () => {
             <Typography
               variant="h5"
               component="div"
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/")}
             >
               signup
             </Typography>

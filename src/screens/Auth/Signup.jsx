@@ -139,12 +139,7 @@ function Signup() {
           >
             Sign Up
           </Button>
-          <Button
-            onClick={guestHandler}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button onClick={guestHandler} fullWidth variant="contained">
             Sign Up as guest
           </Button>
           <Grid container justifyContent="flex-end">
