@@ -64,8 +64,8 @@ const Navbar = () => {
               cursor: "pointer",
             }}
           >
-            <HomeOutlinedIcon sx={{ width: 30, height: 30 }} />
-            <ExploreOutlinedIcon sx={{ width: 30, height: 30 }} />
+            {/* <HomeOutlinedIcon sx={{ width: 30, height: 30 }} />
+            <ExploreOutlinedIcon sx={{ width: 30, height: 30 }} /> */}
           </Box>
         </Grid>
         <Grid item xs={4.5}>

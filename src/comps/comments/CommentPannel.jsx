@@ -18,6 +18,7 @@ import {
   upvoteComment,
 } from "../../redux/slice/post/postServices";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CommentPannel = ({
   comment,
@@ -42,11 +43,13 @@ const CommentPannel = ({
     dispatch(
       upvoteComment({ postId: post._id, commentId: comment._id, token })
     );
+    toast.success('You upvote comment')
   };
   const downvoteHandler = () => {
     dispatch(
       downvotedComment({ postId: post._id, commentId: comment._id, token })
     );
+    toast.success('you downvote comment')
   };
 
   const upvoteUser = comment.votes.upvotedBy.find(
@@ -62,6 +65,7 @@ const CommentPannel = ({
     dispatch(
       deleteComment({ postId: post._id, commentId: comment._id, token })
     );
+    toast.success('you deleted comment')
   };
 
   const editCommentHandler = () => {

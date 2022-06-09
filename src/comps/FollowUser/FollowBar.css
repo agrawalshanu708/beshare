@@ -1,8 +1,18 @@
-.button{
-    width: 6rem;
-    padding: 0.5rem 1rem;
-    box-shadow: 0px 0px;
+.button {
+  width: 6rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 0px;
 }
 .secondary-button {
-    border: 1px solid black
+  border: 1px solid black;
+}
+
+.user__bar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.user__bar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

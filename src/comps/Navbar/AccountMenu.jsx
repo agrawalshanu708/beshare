@@ -18,13 +18,12 @@ export function AccountMenu() {
   const navigate = useNavigate();
   const profileHandler = () => {
     setAnchorEl(null);
-    navigate(`/profile/${foundUser._id}`)
-  }
+    navigate(`/profile/${foundUser._id}`);
+  };
   const logoutHandler = () => {
     setAnchorEl(null);
-    navigate("/login")
-
-  }
+    navigate("/login");
+  };
   return (
     <div>
       <AccountCircleOutlinedIcon
@@ -32,9 +31,9 @@ export function AccountMenu() {
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}       
-        sx = {{ fontSize: "1.9rem", cursor:"pointer"}}  
-/>
+        onClick={handleClick}
+        sx={{ fontSize: "1.9rem", cursor: "pointer" }}
+      />
 
       <Menu
         id="basic-menu"

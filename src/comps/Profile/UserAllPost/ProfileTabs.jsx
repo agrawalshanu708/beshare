@@ -58,8 +58,8 @@ function ProfileTabs({userId}) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Posts" {...a11yProps(0)} />
+          <Tab label="Bookmarked" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

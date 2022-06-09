@@ -7,6 +7,7 @@ import {
   editComment,
 } from "../../../redux/slice/post/postServices";
 import { CommentPannel } from "../../index";
+import { toast } from "react-toastify";
 
 const CommentMenu = ({ post }) => {
   const [commentText, setCommentText] = useState("");
@@ -18,7 +19,10 @@ const CommentMenu = ({ post }) => {
 
   const addCommentHandler = () => {
     dispatch(addComment({ postId: post._id, commentData: commentText, token }));
-    setCommentText("");
+    setCommentText("");     
+    toast.success(`You added comment` )
+
+
   };
   const sendEditCommentHandler = async () => {
     await dispatch(
@@ -31,6 +35,8 @@ const CommentMenu = ({ post }) => {
     );
     await setIsEditComment(false);
     await setCommentText("");
+    toast.success(`You Edit Comment` )
+
   };
   return (
     <>

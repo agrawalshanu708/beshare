@@ -18,7 +18,6 @@ components :{
   MuiButtonBase:{
     styleOverrides:{
       root:{
-         border: '1px solid black'
    
   
   }

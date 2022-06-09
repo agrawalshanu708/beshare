@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { avatar1 } from "../../Assets/index";
 import { followUser, unfollowUser } from "../../redux/slice/user/userService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UserCard = ({ user }) => {
   const dispatch = useDispatch();
@@ -11,13 +12,15 @@ const UserCard = ({ user }) => {
 
   const followHandler = () => {
     dispatch(followUser({ followUserId: user._id, token }));
+    toast.success(`You Starts Following ${user.firstName} ${user.lastName}`);
   };
   const findUser = foundUser.following.some((el) => el._id === user._id);
 
   const unfollowHandler = () => {
     dispatch(unfollowUser({ followUserId: user._id, token }));
+    toast.success(`You Unfollowed ${user.firstName} ${user.lastName}`);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   console.log(allUser);
   return (
     <>
@@ -28,7 +31,11 @@ const UserCard = ({ user }) => {
           margin: "0.5rem 1rem",
         }}
       >
-        <Avatar alt="Remy Sharp" src={avatar1} onClick = {() => navigate(`/profile/${user._id}`)} />
+        <Avatar
+          alt="Remy Sharp"
+          src={avatar1}
+          onClick={() => navigate(`/profile/${user._id}`)}
+        />
         <Box sx={{ flexGrow: "1" }}>
           <Typography sx={{ fontSize: "1.2rem" }}>
             {user.firstName}
@@ -50,6 +57,7 @@ const UserCard = ({ user }) => {
             className="button secondary-button"
             color="primary"
             onClick={followHandler}
+            sx={{ border: "1px solid black" }}
           >
             follow
           </Button>
