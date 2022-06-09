@@ -15,12 +15,12 @@ import {
   deleteComment,
   editComment,
 } from "./postServices";
-import { current } from "immer";
 
 const initialState = {
   allPost: [],
   userPost: [],
   status: false,
+  trendingPost:[],
   getCommentForPost: [],
 };
 
@@ -33,7 +33,8 @@ const postSlice = createSlice({
       state.status = true;
     },
     [getAllPost.fulfilled]: (state, action) => {
-      state.allPost = action.payload;
+      state.allPost = action.payload.reverse();
+      state.trendingPost = action.payload
       state.status = false;
     },
     [getAllPost.rejected]: (state) => {

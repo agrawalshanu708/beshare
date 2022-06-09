@@ -12,6 +12,7 @@ function FeedBar() {
     dispatch(getAllPost());
   }, []); 
   
+  
   return (
     <>
       <Box
