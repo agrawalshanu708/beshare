@@ -5,11 +5,12 @@ import { Navbar, PlainNav } from "./comps";
 import { ToastContainer } from "react-toastify";
 import { Login, Signup, Home, Profile } from "./screens/index";
 function App() {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   return (
     <div className="App">
-      {pathname === "/login" && pathname === "/" && <PlainNav /> }
-      {pathname !== "/login" && pathname !== "/" && <Navbar /> }
+      <div>
+        {pathname === "/login" || pathname === "/" ? <PlainNav /> : <Navbar />}
+      </div>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Signup />} />
