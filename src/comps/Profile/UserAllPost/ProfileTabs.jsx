@@ -9,6 +9,7 @@ import {
 
 import { UserAllPost } from "./UserAllPost";
 import { BookmarkPost } from "./BookmarkPost";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,6 +46,7 @@ function a11yProps(index) {
 
 function ProfileTabs({userId}) {
   const [value, setValue] = React.useState(0);
+  const { foundUser, allUser } = useSelector((store) => store.users);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -59,7 +61,7 @@ function ProfileTabs({userId}) {
           aria-label="basic tabs example"
         >
           <Tab label="Posts" {...a11yProps(0)} />
-          <Tab label="Bookmarked" {...a11yProps(1)} />
+      { userId === foundUser._id && <Tab label="Bookmarked" {...a11yProps(1)} />}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

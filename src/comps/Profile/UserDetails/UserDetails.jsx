@@ -61,11 +61,11 @@ const UserDetails = ({ userId }) => {
             <Typography variant="h6" component="div">
               {user.firstName} {user.lastName}
             </Typography>
-            <EditProfileModal
+            { userId === foundUser._id && <EditProfileModal
               userProfileDetails={userProfileDetails}
               setUserProfileDetails={setUserProfileDetails}
               user={user}
-            />
+            />}
           </Box>
           <Typography variant="h6" component="div" sx={{ color: "gray" }}>
             {user.bio}
