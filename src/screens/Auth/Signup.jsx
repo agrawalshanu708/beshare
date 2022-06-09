@@ -15,6 +15,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signupHandler } from "../../redux/slice/user/userService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Signup() {
   const [signupCredential, setSignupCredential] = useState({
     firstName: "",
@@ -32,7 +33,13 @@ function Signup() {
         username: signupCredential.username,
         password: signupCredential.password,
       })
-    );
+    ).then(() => {
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+
+      toast.success("Signup successfully");
+    });
   };
   const guestHandler = () => {
     dispatch(
@@ -144,7 +151,7 @@ function Signup() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link onClick={() => navigate("/login")} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

@@ -1,17 +1,28 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../../Assets/index";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "../../utils/MaterialUI";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+
 const PlainNav = () => {
+  const {token } = useSelector((store) => store.users);
+
   const navigate = useNavigate();
+  const homePageHandler = () => {
+    token ? navigate("/home") : toast.error("Please Login First");
+  };
   return (
     <>
       <Box>
         <Typography
           variant="h5"
           component="div"
-          onClick={() => navigate("/home")}
-          sx={{ fontFamily: `'Pacifico', cursive`, fontSize: "2.5rem", color: "#0a1647" }}
+          onClick={homePageHandler}
+          sx={{
+            fontFamily: `'Pacifico', cursive`,
+            fontSize: "2.5rem",
+            color: "#0a1647",
+          }}
         >
           beShare.
         </Typography>

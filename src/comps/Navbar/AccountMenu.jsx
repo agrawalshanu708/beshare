@@ -2,11 +2,14 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../redux/slice/user/userSlice";
+import { toast } from "react-toastify";
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const dispatch = useDispatch();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,6 +26,8 @@ export function AccountMenu() {
   const logoutHandler = () => {
     setAnchorEl(null);
     navigate("/login");
+    dispatch(logout());
+    toast.success('Logout successfully')
   };
   return (
     <div>

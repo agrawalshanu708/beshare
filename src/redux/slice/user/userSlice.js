@@ -23,6 +23,12 @@ const userSlice = createSlice({
     setFoundUser: (state, action) => {
       state.foundUser = action.payload;
     },
+    logout: (state) => (
+      state.token = null,
+      state.foundUser = null,
+      localStorage.removeItem("token"),
+      localStorage.removeItem("loginItems")
+    ),
   },
   extraReducers: {
     [signupHandler.pending]: (state) => {
@@ -32,8 +38,9 @@ const userSlice = createSlice({
       localStorage.setItem("token", action.payload.encodedToken);
       state.foundUser = action.payload.createdUser;
     },
-    [signupHandler.rejected]: (action) => {
-      alert("signup rejected");
+    [signupHandler.rejected]: (state) => {
+      state.loading = false;
+
     },
     [loginHandler.pending]: (state) => {
       state.loading = true;
@@ -43,8 +50,9 @@ const userSlice = createSlice({
       state.foundUser = action.payload.foundUser;
       state.token = action.payload.encodedToken;
     },
-    [loginHandler.rejected]: (action) => {
-      alert("login failure");
+    [loginHandler.rejected]: (state) => {
+      state.loading = false;
+
     },
     [bookmarkPost.pending]: (state) => {
       state.loading = true;
@@ -108,4 +116,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
-export const { setFoundUser } = userSlice.actions;
+export const { setFoundUser,logout } = userSlice.actions;

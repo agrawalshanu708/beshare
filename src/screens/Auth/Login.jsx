@@ -13,9 +13,10 @@ import {
   Container,
 } from "../../utils/MaterialUI";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginHandler } from "../../redux/slice/user/userService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const [loginCredential, setLoginCredential] = useState({
@@ -24,13 +25,19 @@ function Login() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {token } = useSelector((store) => store.users);
+
   function clickHandler() {
     dispatch(
       loginHandler({
         username: loginCredential.username,
         password: loginCredential.password,
       })
-    );
+    ).then(() => {
+      setTimeout(() => {navigate("/home")
+    },1000)
+    toast.success("Login successfully")
+    })
   }
 
   function guestHandler() {
@@ -39,7 +46,7 @@ function Login() {
         username: "shanuagrawal",
         password: "shanu123",
       })
-    ).then(() => navigate("/home"));
+    ).then(() => navigate("/home")).then(() => toast.success("Login successfully"));
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -110,7 +117,7 @@ function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link onClick = {() => navigate("/")} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
