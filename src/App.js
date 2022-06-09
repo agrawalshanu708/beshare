@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { Navbar, PlainNav } from "./comps";
 import { ToastContainer } from "react-toastify";
-import { Login, Signup, Home, Profile } from "./screens/index";
+import { Login, Signup, Home, Profile, Error404 } from "./screens/index";
 function App() {
   const { pathname } = useLocation();
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile/:userId" element={<Profile />} />
+        <Route path = "*" element = {<Error404/>}/>
       </Routes>
       <ToastContainer
         position="top-center"
