@@ -1,36 +1,51 @@
 import React, { useState } from "react";
-import {Avatar,Button,TextField,Typography,Box,AddCircleOutlineOutlinedIcon} from "../../utils/MaterialUI"
+import {
+  Avatar,
+  Button,
+  TextField,
+  Typography,
+  Box,
+  AddCircleOutlineOutlinedIcon,
+} from "../../utils/MaterialUI";
 import { cover1, avatar1 } from "../../Assets/index";
 import { useDispatch, useSelector } from "react-redux";
-import { createPostHandler, getAllPost } from "../../redux/slice/post/postServices";
+import {
+  createPostHandler,
+  getAllPost,
+} from "../../redux/slice/post/postServices";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import "./PostData.css";
 const PostData = () => {
   const [post, setPost] = useState("");
-  const {allUser, foundUser, token } = useSelector((store) => store.users);
+  const { allUser, foundUser, token } = useSelector((store) => store.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const postHandler = async () => {
     await dispatch(createPostHandler({ postContent: post, token }));
-    await dispatch(getAllPost())
+    await dispatch(getAllPost());
+    toast.success(`Added New Post`);
   };
-    
+
   return (
     <Box
       sx={{
         height: "82vh",
         backgroundColor: "#fafafa",
-        position: 'fixed',
+        position: "sticky",
         width: "17rem",
         marginTop: "5.5rem",
         overflow: "auto",
-        marginLeft: "0.5rem"
+        marginLeft: "0.5rem",
+        top: "5rem",
       }}
-    >  
+      className="create__post__box"
+    >
       <Box
         sx={{
           height: "10rem",
+          width: "17rem",
         }}
       >
         <img
@@ -53,8 +68,7 @@ const PostData = () => {
           }}
           alt="Travis Howard"
           src={avatar1}
-          onClick = {() => navigate(`/profile/${foundUser._id}`)}
-
+          onClick={() => navigate(`/profile/${foundUser._id}`)}
         />
       </Box>
 

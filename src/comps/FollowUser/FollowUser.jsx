@@ -19,10 +19,10 @@ const dispatch = useDispatch();
         backgroundColor: "#ffffff",
         height: "82vh",
         overflow: "auto",
-        position: "fixed",
+        position: "sticky",
         marginTop: "5.6rem",
-        width: "23rem",
-      }}
+        top:"5rem"
+      }} className = "user__bar"
     >
       <Box
         sx={{

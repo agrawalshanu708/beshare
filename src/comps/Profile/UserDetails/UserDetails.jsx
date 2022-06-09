@@ -32,7 +32,7 @@ const UserDetails = ({ userId }) => {
         height: "100vh",
         position: "absolute",
         zIndex: "9",
-        top: "12rem",
+        top: "7rem",
         left: "1.5rem",
         width: "21rem",
         backgroundColor: "#ffffff",

@@ -10,11 +10,10 @@ import {
 } from "../../utils/MaterialUI";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import {AccountMenu} from "./AccountMenu"
 const Navbar = () => {
-const navigate = useNavigate();
-const {allUser, foundUser, token } = useSelector((store) => store.users);
-
+  const navigate = useNavigate();
+  const { allUser, foundUser, token } = useSelector((store) => store.users);
 
   return (
     <Box
@@ -38,11 +37,18 @@ const {allUser, foundUser, token } = useSelector((store) => store.users);
             variant="h5"
             component="div"
             onClick={() => {
-              if(token) {navigate("/home")}
-              else{alert("login first")}    
-            }}
-            sx = {{fontFamily: `'Pacifico', cursive`,fontSize:'2.5rem'}}
+              if (token) {
+                navigate("/home");
+              } else {
+                alert("login first");
+              }
+            }} 
 
+            sx={{
+              fontFamily: `'Pacifico', cursive`,
+              fontSize: "2.5rem",
+              color: "#0a1647",
+            }}
           >
             beShare.
           </Typography>
@@ -58,8 +64,8 @@ const {allUser, foundUser, token } = useSelector((store) => store.users);
               cursor: "pointer",
             }}
           >
-            <HomeOutlinedIcon sx={{ width: 30, height: 30 }} />
-            <ExploreOutlinedIcon sx={{ width: 30, height: 30 }} />
+            {/* <HomeOutlinedIcon sx={{ width: 30, height: 30 }} />
+            <ExploreOutlinedIcon sx={{ width: 30, height: 30 }} /> */}
           </Box>
         </Grid>
         <Grid item xs={4.5}>
@@ -77,21 +83,8 @@ const {allUser, foundUser, token } = useSelector((store) => store.users);
               variant="standard"
               sx={{ marginBottom: "1rem" }}
             />
-            {/* /  <Avatar alt="Remy Sharp" src={avatar1} /> */}
-            <Typography
-              variant="h5"
-              component="div"
-              onClick={() => navigate("/login")}
-            >
-              login
-            </Typography>
-            <Typography
-              variant="h5"
-              component="div"
-              onClick={() => navigate("/")}
-            >
-              signup
-            </Typography>
+            <AccountMenu/>
+     
           </Box>
         </Grid>
       </Grid>

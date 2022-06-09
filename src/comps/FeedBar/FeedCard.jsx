@@ -30,6 +30,7 @@ import {
 } from "../../redux/slice/user/userService";
 import { CommentMenu } from "../comments/EditCommentmodal/CommentMenu";
 import { CardMenu } from "./CardMenu";
+import { toast } from "react-toastify";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -64,36 +65,29 @@ function FeedCard({ post }) {
   };
 
   const likeHandler = () => {
-    dispatch(likePost({ token, postId: post._id }));
+    dispatch(likePost({ token, postId: post._id }))
+    toast.success('You liked Post');
   };
 
   const dislikeHandler = () => {
     dispatch(dislikePost({ token, postId: post._id }));
+    toast.success('You Disliked Post');
+
   };
 
   const bookmarkHandler = () => {
     dispatch(bookmarkPost({ token, postId: post._id }));
+    toast.success('You Bookmarked Post');
+
   };
 
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
+    toast.success('Bookmarked Removed');
+
   };
 
-  const addCommentHandler = () => {
-    dispatch(addComment({ postId: post._id, commentData: commentText, token }));
-    setCommentText("");
-  };
-  const sendEditCommentHandler = async () => {
-    await dispatch(
-      editComment({
-        postId: post._id,
-        commentData: newComment,
-        commentId: targetComment._id,
-        token,
-      })
-    );
-    await setIsEditComment(false);
-  };
+
 
   return (
     <Box sx={{ border: "0.6px solid #e4f5f9" }}>

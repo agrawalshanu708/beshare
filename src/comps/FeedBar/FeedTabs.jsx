@@ -2,7 +2,7 @@ import * as React from "react";
 import { Typography, Box, PropTypes, Tabs, Tab } from "../../utils/MaterialUI";
 import { TrendingBar } from "./TrendingBar";
 import { FeedBar } from "./FeedBar";
-
+import { ExploreOutlinedIcon, HomeOutlinedIcon } from "../../utils/MaterialUI";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -44,15 +44,16 @@ function FeedTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          sx = {{marginLeft: '12rem'}}
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab  icon={<HomeOutlinedIcon sx={{fontSize:"2rem" }} />} {...a11yProps(0)} />
+          <Tab icon={<ExploreOutlinedIcon  sx={{fontSize:"2rem" }} />} {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

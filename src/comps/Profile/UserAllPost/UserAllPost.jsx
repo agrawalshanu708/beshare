@@ -10,16 +10,13 @@ const UserAllPost = ({ userId }) => {
 
   const userPost = allPost.filter((el) => el.username === user.username);
 
-  console.log(user);
   return (
-    <Box sx={{ marginTop: "2rem" }}>
-      <Divider sx={{ margin: "1rem" }} />
+    <Box>
+      <Divider />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "1rem",
-          margin: "0 1rem",
         }}
       >
         {userPost.map((el) => (
