@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Divider } from "../../../utils/MaterialUI";
 import { useSelector } from "react-redux";
 import { FeedCard } from "../../FeedBar/FeedCard";
-
+import {nopost} from "../../../Assets/index"
 const UserAllPost = ({ userId }) => {
   const { allPost } = useSelector((store) => store.posts);
   const { allUser } = useSelector((store) => store.users);
@@ -19,9 +19,11 @@ const UserAllPost = ({ userId }) => {
           flexDirection: "column",
         }}
       >
-        {userPost.map((el) => (
+        { userPost.length>0 ? userPost.map((el) => (
           <FeedCard post={el} key={el._id} />
-        ))}
+        )): <div style = {{width: "15rem", margin:"auto"}}>
+          <img src = {nopost}/>
+        </div> }
       </Box>
     </Box>
   );
