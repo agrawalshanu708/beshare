@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+Beshare - A platform to share moments, Social Media
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Link
 
-## Available Scripts
+- [beshare](https://beshare.vercel.app/)
 
-In the project directory, you can run:
+## Pages till now
 
-### `yarn start`
+- Home page
+- Profile page
+- Login
+- Signup page
+- Error 404 page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Home Page
 
-### `yarn test`
+- Navbar, from where you can navigate to trending feeds, latest feeds
+- Create post: A section, where user can add a new post to feeds
+- Follow User: A section where user can follow/unfollow persons
+- Feed: Middle section, which display posts of all the users
+- Footer, footer features and footer main.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Profile Page
 
-### `yarn build`
+- Personal Details: user can edit his personal details
+- Posts: User can see his own posts
+- Bookmark: User can see his bookmarked post
+- Cover pic: User can add cover pic
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### PostCard
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Delete: user can delete his post
+- Update: user can edit his posts
+- LIke/dislike - user can like/dislike user's Posts
+- Bookmark: user can bookmarked his favorites Posts
+- Comment: user can comment to any posts
+- upvote/downvote: user can upvote/downvote user's Comments
+- Edit comment: user can edit his own comment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Signup Page
 
-### `yarn eject`
+- Address details feilds
+- Signin user
+- Personal details feilds
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Login Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Add details feilds
+- Login user
+- Guest login
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 404 page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 404 page for unknown route
 
-## Learn More
+## Technology
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    React
+    Reducx toolkit
+    MaterialUI
+    Css
+    Js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Images
 
-### Code Splitting
+<div style = {{display: "flex"}}>
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172688615-fa78138d-1599-48fe-89c1-910e6e93d03e.png"> 
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172688849-191d5580-0eed-4d62-80b6-35975aaaa723.png"> 
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172689056-9fd3be79-efc4-44a9-ba61-fd0411a3560e.png">  
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172689209-f4760a96-4076-4847-a827-08d12d011157.png">
+ </div>
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [@agrawalshanu708](https://github.com/agrawalshanu708)
 
-### Analyzing the Bundle Size
+## 👨‍💻 Connect with me
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://twitter.com/shanuag44891297"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"/></a>
+<a href="https://www.linkedin.com/in/shanu-agrawal-3b992a227/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
