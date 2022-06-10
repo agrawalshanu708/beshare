@@ -49,6 +49,7 @@ const Navbar = () => {
               fontSize: "2.5rem",
               color: "#0a1647",
             }}
+            className = "cursor"
           >
             beShare.
           </Typography>

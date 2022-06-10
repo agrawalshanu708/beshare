@@ -48,8 +48,11 @@ function FeedCard({ post }) {
   const [commentText, setCommentText] = useState("");
   const [isEditComment, setIsEditComment] = useState(false);
   const [targetComment, setTargetComment] = useState("");
-  const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
+
+  const userPost = post.username === foundUser.username;
+
+  const dispatch = useDispatch();
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -65,29 +68,24 @@ function FeedCard({ post }) {
   };
 
   const likeHandler = () => {
-    dispatch(likePost({ token, postId: post._id }))
-    toast.success('You liked Post');
+    dispatch(likePost({ token, postId: post._id }));
+    toast.success("You liked Post");
   };
 
   const dislikeHandler = () => {
     dispatch(dislikePost({ token, postId: post._id }));
-    toast.success('You Disliked Post');
-
+    toast.success("You Disliked Post");
   };
 
   const bookmarkHandler = () => {
     dispatch(bookmarkPost({ token, postId: post._id }));
-    toast.success('You Bookmarked Post');
-
+    toast.success("You Bookmarked Post");
   };
 
   const removeBookmarkHandler = () => {
     dispatch(removeBookmarkPost({ token, postId: post._id }));
-    toast.success('Bookmarked Removed');
-
+    toast.success("Bookmarked Removed");
   };
-
-
 
   return (
     <Box sx={{ border: "0.6px solid #e4f5f9" }}>
@@ -99,7 +97,7 @@ function FeedCard({ post }) {
         }
         action={
           <IconButton aria-label="settings">
-            <CardMenu post={post} />
+            {userPost && <CardMenu post={post} />}
           </IconButton>
         }
         title={post.username}
@@ -124,17 +122,27 @@ function FeedCard({ post }) {
       >
         <span>
           {likeUser ? (
-            <ThumbUpIcon sx={{ fontWeight: "100" }} onClick={dislikeHandler} />
+            <ThumbUpIcon
+              className="cursor"
+              sx={{ fontWeight: "100" }}
+              onClick={dislikeHandler}
+            />
           ) : (
-            <ThumbUpOutlinedIcon onClick={likeHandler} />
+            <ThumbUpOutlinedIcon className="cursor" onClick={likeHandler} />
           )}
           {post.likes.likeCount}
         </span>
         <span>
           {findBookmarkPost() ? (
-            <BookmarkAddIcon onClick={removeBookmarkHandler} />
+            <BookmarkAddIcon
+              className="cursor"
+              onClick={removeBookmarkHandler}
+            />
           ) : (
-            <BookmarkAddOutlinedIcon onClick={bookmarkHandler} />
+            <BookmarkAddOutlinedIcon
+              className="cursor"
+              onClick={bookmarkHandler}
+            />
           )}
         </span>
         <CommentOutlinedIcon
@@ -142,6 +150,7 @@ function FeedCard({ post }) {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          className="cursor"
         />
       </Box>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

@@ -45,7 +45,7 @@ function CardMenu({ post }) {
             <MenuItem onClick={deletePostHandler}>Delete</MenuItem>
           </span>
         )}
-        <MenuItem onClick={handleClose}>share</MenuItem>
+        {/* <MenuItem onClick={handleClose}>share</MenuItem> */}
       </Menu>
     </div>
   );

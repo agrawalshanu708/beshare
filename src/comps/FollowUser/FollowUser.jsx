@@ -32,7 +32,7 @@ const dispatch = useDispatch();
         }}
       >
         <Typography sx = {{fontFamily: 'Varela Round', fontWeight:"bold",fontSize:20}}>Suggest For you</Typography>
-        <Typography sx = {{fontFamily:'Varela Round', fontSize:17,color:"#0a1647"}}>See All</Typography>
+        {/* <Typography sx = {{fontFamily:'Varela Round', fontSize:17,color:"#0a1647"}}>See All</Typography> */}
       </Box>
 
       {

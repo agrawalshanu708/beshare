@@ -43,13 +43,13 @@ const CommentPannel = ({
     dispatch(
       upvoteComment({ postId: post._id, commentId: comment._id, token })
     );
-    toast.success('You upvote comment')
+    toast.success("You upvote comment");
   };
   const downvoteHandler = () => {
     dispatch(
       downvotedComment({ postId: post._id, commentId: comment._id, token })
     );
-    toast.success('you downvote comment')
+    toast.success("you downvote comment");
   };
 
   const upvoteUser = comment.votes.upvotedBy.find(
@@ -65,7 +65,7 @@ const CommentPannel = ({
     dispatch(
       deleteComment({ postId: post._id, commentId: comment._id, token })
     );
-    toast.success('you deleted comment')
+    toast.success("you deleted comment");
   };
 
   const editCommentHandler = () => {
@@ -112,14 +112,17 @@ const CommentPannel = ({
           </Box>
           <Box>
             {upvoteUser ? (
-              <ThumbUpIcon />
+              <ThumbUpIcon className="cursor" />
             ) : (
-              <ThumbUpOutlinedIcon onClick={upvoteHandler} />
+              <ThumbUpOutlinedIcon className="cursor" onClick={upvoteHandler} />
             )}
             {downvoteUser ? (
-              <ThumbDownIcon />
+              <ThumbDownIcon className="cursor" />
             ) : (
-              <ThumbDownOutlinedIcon onClick={downvoteHandler} />
+              <ThumbDownOutlinedIcon
+                className="cursor"
+                onClick={downvoteHandler}
+              />
             )}
           </Box>
         </Box>
@@ -130,6 +133,7 @@ const CommentPannel = ({
               aria-controls={open ? "demo-positioned-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
+              className="cursor"
               onClick={handleClick}
             />
           )}
@@ -148,8 +152,12 @@ const CommentPannel = ({
               horizontal: "left",
             }}
           >
-            <MenuItem onClick={editCommentHandler}>Edit</MenuItem>
-            <MenuItem onClick={deleteHandler}>Delete</MenuItem>
+            <MenuItem className="cursor" onClick={editCommentHandler}>
+              Edit
+            </MenuItem>
+            <MenuItem className="cursor" onClick={deleteHandler}>
+              Delete
+            </MenuItem>
           </Menu>
         </Box>
       </Box>

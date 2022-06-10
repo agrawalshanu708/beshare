@@ -3,7 +3,7 @@
 img{
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
 }
 :root{
     --primary-color: #0a1647,
@@ -20,4 +20,10 @@ img{
 .flex-col{
     display: flex;
     flex-direction: column;
+}
+.mlr{
+  margin: 0 0.5rem
+}
+.cursor{
+    cursor: pointer;
 }

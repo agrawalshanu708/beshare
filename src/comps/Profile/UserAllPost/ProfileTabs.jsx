@@ -44,7 +44,7 @@ function a11yProps(index) {
   };
 }
 
-function ProfileTabs({userId}) {
+function ProfileTabs({ userId }) {
   const [value, setValue] = React.useState(0);
   const { foundUser, allUser } = useSelector((store) => store.users);
 
@@ -60,15 +60,17 @@ function ProfileTabs({userId}) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Posts" {...a11yProps(0)} />
-      { userId === foundUser._id && <Tab label="Bookmarked" {...a11yProps(1)} />}
+          <Tab className="cursor" label="Posts" {...a11yProps(0)} />
+          {userId === foundUser._id && (
+            <Tab className="cursor" label="Bookmarked" {...a11yProps(1)} />
+          )}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <UserAllPost  userId = {userId} />
+        <UserAllPost userId={userId} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <BookmarkPost  userId = {userId} />
+        <BookmarkPost userId={userId} />
       </TabPanel>
     </Box>
   );

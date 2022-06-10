@@ -61,7 +61,7 @@ const UserDetails = ({ userId }) => {
             <Typography variant="h6" component="div">
               {user.firstName} {user.lastName}
             </Typography>
-            { userId === foundUser._id && <EditProfileModal
+            { userId === foundUser._id && <EditProfileModal 
               userProfileDetails={userProfileDetails}
               setUserProfileDetails={setUserProfileDetails}
               user={user}

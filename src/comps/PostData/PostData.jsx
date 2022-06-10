@@ -66,6 +66,7 @@ const PostData = () => {
             height: 85,
             zIndex: 999,
           }}
+          className="cursor"
           alt="Travis Howard"
           src={avatar1}
           onClick={() => navigate(`/profile/${foundUser._id}`)}

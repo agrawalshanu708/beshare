@@ -5,7 +5,7 @@ const UserCover = () => {
   return (
     <Box
       sx={{
-        height: "13rem",
+        height: "20rem",
       }}
     >
       <img src={cover1} alt="user profile cover" />

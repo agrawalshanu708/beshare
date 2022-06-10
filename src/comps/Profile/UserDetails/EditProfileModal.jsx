@@ -21,18 +21,14 @@ const style = {
   gap: "1rem",
 };
 
-function EditProfileModal({
-  userProfileDetails,
-  setUserProfileDetails,
-  user,
-}) {
+function EditProfileModal({ userProfileDetails, setUserProfileDetails, user }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <ModeEditOutlineOutlinedIcon onClick={handleOpen} />
+      <ModeEditOutlineOutlinedIcon className="cursor" onClick={handleOpen} />
       <Modal
         open={open}
         onClose={handleClose}

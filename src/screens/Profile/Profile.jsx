@@ -1,5 +1,5 @@
 import React from "react";
-import {Grid,Box} from "../../utils/MaterialUI";
+import { Grid, Box } from "../../utils/MaterialUI";
 
 import {
   UserCover,
@@ -7,17 +7,17 @@ import {
   UserAllPost,
   ProfileTabs,
 } from "../../comps/index";
- import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  const {userId} = useParams();
+  const { userId } = useParams();
 
   return (
-    <Box>
+    <Box className="mlr">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Box>
-            <UserCover userId = {userId} />
+            <UserCover userId={userId} />
           </Box>
         </Grid>
       </Grid>
@@ -25,13 +25,13 @@ const Profile = () => {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Box>
-            <UserDetails userId = {userId} />
+            <UserDetails userId={userId} />
           </Box>
         </Grid>
 
         <Grid item xs={8}>
           <Box>
-            <ProfileTabs  userId = {userId} />
+            <ProfileTabs userId={userId} />
           </Box>
         </Grid>
       </Grid>

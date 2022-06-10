@@ -34,10 +34,15 @@ const UserCard = ({ user }) => {
         <Avatar
           alt="Remy Sharp"
           src={avatar1}
+          className="cursor"
           onClick={() => navigate(`/profile/${user._id}`)}
         />
         <Box sx={{ flexGrow: "1" }}>
-          <Typography sx={{ fontSize: "1.2rem" }}>
+          <Typography
+            className="cursor"
+            onClick={() => navigate(`/profile/${user._id}`)}
+            sx={{ fontSize: "1.2rem" }}
+          >
             {user.firstName}
             {user.lastName}
           </Typography>
