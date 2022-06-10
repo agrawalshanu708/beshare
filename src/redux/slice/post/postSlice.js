@@ -14,6 +14,7 @@ import {
   downvotedComment,
   deleteComment,
   editComment,
+  deletePost,
 } from "./postServices";
 
 const initialState = {
@@ -89,6 +90,16 @@ const postSlice = createSlice({
       state.allPost = action.payload.posts;
     },
     [editPost.rejected]: (state) => {
+      state.status = false;
+    },
+    [deletePost.pending]: (state) => {
+      state.status = true;
+    },
+    [deletePost.fulfilled]: (state, action) => {
+      state.status = false;
+      state.allPost = action.payload;
+    },
+    [deletePost.rejected]: (state) => {
       state.status = false;
     },
     [getAllComment.pending]: (state) => {

@@ -90,17 +90,13 @@ export const editPost = createAsyncThunk(
 export const deletePost = createAsyncThunk(
   "post/deletePost",
   async ({ postId, token }, { rejectWithValue }) => {
-    console.log("del wiring");
-    console.log(postId, token);
     try {
-      const response = await axios.delete(
-        `/api/posts/${postId}`,
-        {},
-        { headers: { authorization: token } }
-      );
-      console.log(response);
+      const response = await axios.delete(`/api/posts/${postId}`, {
+        headers: { authorization: token },
+      });
+      return response.data.posts;
     } catch (error) {
-      console.log(error);
+      return rejectWithValue(`Error from deletePost: ${error.message}`);
     }
   }
 );
@@ -184,7 +180,7 @@ export const deleteComment = createAsyncThunk(
 export const editComment = createAsyncThunk(
   "post/editComment",
   async ({ postId, commentId, commentData, token }, { rejectWithValue }) => {
-    console.log(commentId,commentData)
+    console.log(commentId, commentData);
     try {
       const response = await axios.post(
         `/api/comments/edit/${postId}/${commentId}`,

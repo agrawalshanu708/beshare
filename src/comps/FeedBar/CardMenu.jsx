@@ -3,6 +3,7 @@ import { MoreVertIcon, Menu, MenuItem } from "../../utils/MaterialUI";
 import { useDispatch, useSelector } from "react-redux";
 import { EditPost } from "./EditPost";
 import { deletePost } from "../../redux/slice/post/postServices";
+import { toast } from "react-toastify";
 function CardMenu({ post }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -15,8 +16,9 @@ function CardMenu({ post }) {
   const dispatch = useDispatch();
   const { foundUser, token } = useSelector((store) => store.users);
   const userPost = post.username === foundUser.username;
+  
   const deletePostHandler = () => {
-    dispatch(deletePost({ postId: post._id, token }));
+    dispatch(deletePost({ postId: post._id, token })).then(() => toast.success("Post deleted"));
   };
   return (
     <div>
