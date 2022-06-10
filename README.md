@@ -3,6 +3,7 @@ Beshare - A platform to share moments, Social Media
 ## Live Link
 
 - [beshare](https://beshare.vercel.app/)
+<img width="947" alt="image" src="https://user-images.githubusercontent.com/95335996/173058761-6ed57909-3fbe-4981-af78-715309141018.png">
 
 ## Pages till now
 
@@ -66,11 +67,9 @@ Beshare - A platform to share moments, Social Media
 ### Images
 
 <div style = {{display: "flex"}}>
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172688615-fa78138d-1599-48fe-89c1-910e6e93d03e.png"> 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172688849-191d5580-0eed-4d62-80b6-35975aaaa723.png"> 
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172689056-9fd3be79-efc4-44a9-ba61-fd0411a3560e.png">  
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/95335996/172689209-f4760a96-4076-4847-a827-08d12d011157.png">
- </div>
+<img width="941" alt="image" src="https://user-images.githubusercontent.com/95335996/173058810-10372e2b-a511-4e7e-b09b-9294a9e3426c.png">
+<img width="946" alt="image" src="https://user-images.githubusercontent.com/95335996/173058898-0e043071-e180-4b8d-9ced-20446e86c8ea.png">
+<img width="952" alt="image" src="https://user-images.githubusercontent.com/95335996/173058982-c69839e7-386a-4cdc-8f64-31aff7d493f2.png"> </div>
 ## Author
 
 - [@agrawalshanu708](https://github.com/agrawalshanu708)
